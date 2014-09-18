@@ -2,7 +2,7 @@ import sqlite3
 from flask import g
 
 def queryTeacher(myname):
-	conn = sqlite3.connect("app/dbase/hearstdata.db")
+	conn = sqlite3.connect("dbase/hearstdata.db")
 	c = conn.cursor()
 	query='select distinct teacher from hearstmain'
 	c.execute(query)
@@ -15,17 +15,32 @@ def queryTeacher(myname):
 	conn.commit()
 	conn.close()
 
+def queryAll():
+	conn = sqlite3.connect("app/dbase/hearstdata.db")
+	c = conn.cursor()
+	query='select * from hearstmain'
+	c.execute(query)
+	results = [dict(teachername=row[0], studentname=row[1], objectname=row[2]) for row in c.fetchall()]
+	conn.close()
+	"""str1='w'
+	print results
+	for strin in results:
+		str1=str1+strin['teachername']
+		print str1"""
+	return results
+
+
 def addToSatchel(objid):
 	conn = sqlite3.connect("app/dbase/hearstdata.db")
 	c = conn.cursor()
-	query='select distinct teacher from hearstmain'
-	c.execute(query)
+	entries=('MRs Robin', 'Jinny', 'objid','1','2')
+	query='insert into hearstmain values (?,?,?)'
+	c.execute('insert into hearstmain values (?,?,?,?,?)',entries)
 	#results = [dict(myname=row[0], fname=row[1], srcname=row[2]) for row in c.fetchall()]
 	#conn.close()
 	#return results
 
-	querytoExec="create table hearstmain (teacher text not null,student text not null,obj1 text not null,obj2 text not null,obj3 text not null	);"
-	c.execute(querytoExec)
+	#querytoExec="create table hearstmain (teacher text not null,student text not null,obj1 text not null,obj2 text not null,obj3 text not null	);"
 	conn.commit()
 	conn.close()
 
@@ -35,7 +50,7 @@ def addToSatchel(objid):
 	
 
 if __name__ == '__main__':
-	addTable("not")
+	queryAll()
 	"""d= getBuds('aditya')
 	for e in d:
 		print e['fname']"""
