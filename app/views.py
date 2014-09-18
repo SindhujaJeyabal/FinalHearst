@@ -3,6 +3,7 @@ from flask import url_for
 from app import app
 from libs import apis
 import dbHandler
+import satchelHandler
 
 @app.route('/debug')
 def debug():
@@ -23,3 +24,10 @@ def satrender():
 def show_user_profile(username):
 	# show the user profile for that user
 	return 'User %s' % username
+
+@app.route('/addtosatchel/<objid>')
+def satchelAdd(objid):
+	# show the user profile for that user
+	satchelHandler.addToSatchel(objid)
+	return 'User %s' % username
+

@@ -43,6 +43,7 @@ def addTable(myname):
 	#results = [dict(myname=row[0], fname=row[1], srcname=row[2]) for row in c.fetchall()]
 	
 
+
 if __name__ == '__main__':
 	addTable("not")
 	"""d= getBuds('aditya')
