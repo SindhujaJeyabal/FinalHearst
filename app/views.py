@@ -10,13 +10,15 @@ def auth():
 		return
 	else:
 		return redirect(url_for('main'))
-		
+
 
 @app.route('/')
 def index():
 	if 'username' in session:
-		return 'Logged in as %s' % escape(session['username'])
-	return 'You are not logged in'
+		#return 'Logged in as %s' %session['username']		
+		return redirect(url_for('main'))
+
+	return redirect(url_for('login'))
 @app.route('/debug')
 def debug():
 	#return "Static URL"+url_for('static', filename='css/bootstrap.min.css')
@@ -27,12 +29,8 @@ def login():
 	if request.method == 'POST':
 		session['username'] = request.form['username']
 		return redirect(url_for('main'))
-	return '''
-		<form action="" method="post">
-			<p><input type=text name=username>
-			<p><input type=submit value=Login>
-		</form>
-	'''
+	return render_template('form.html')
+
 
 @app.route('/homepage.html')
 def main():
@@ -64,8 +62,28 @@ def queryAll():
 		str1=str1+myelement['teachername']
 	return str1
 
+@app.route('/artifact-category.html/<tribeid>')
+def queryAllArtifacts():
+	# show the user profile for that user
+	if(tribeid!=""):
+		return "No tribe selected"
+	mylist=satchelHandler.queryAllArtifacts(tribeid)
+	str1="wow"
+	for myelement in mylist:
+		str1=str1+myelement['teachername']
+	return str1
+
+
+@app.route('/artifact-category.html')
+def queryAll1Artifacts():
+	# show the user profile for that user
+	return render_template('artifact-category.html')
+
 @app.route('/logout')
 def terminate():
 	# remove the username from the session if it's there
 	session.pop('username', None)
+	session.pop('teachername', None)
+
 	return redirect(url_for('index'))
+

@@ -9,7 +9,9 @@ import satchelHandler
 def addToSatchel(objid):
 	try:
 		myname=session['username']
-		tup1=(myname,objid)
+		myteachername=session['teachername']
+
+		tup1=(myteachername,myname,objid)
 		dbHandler.addToSatchel(tup1)
 	except Exception as e:
 		return False
@@ -22,3 +24,18 @@ def querySatchel():
 	except Exception as e:
 		return e
 
+def queryAllArtifacts(tribeid):
+	try:
+		listall=[]
+		listall=dbHandler.queryAll()
+		return listall
+	except Exception as e:
+		return e
+
+def queryAllTeachers():
+	try:
+		listall=[]
+		listall=dbHandler.queryTeachers()
+		return listall
+	except Exception as e:
+		return e

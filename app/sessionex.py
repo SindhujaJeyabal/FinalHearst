@@ -17,7 +17,8 @@ def login():
         return redirect(url_for('index'))
     return '''
         <form action="" method="post">
-            <p><input type=text name=username>
+            <p>Teachers Name<input type=text name=teachername>
+            <p>Your name kid --!!<input type=text name=username>
             <p><input type=submit value=Login>
         </form>
     '''
