@@ -1,0 +1,21 @@
+Route to ('/satchel.html')
+Shows current satchel
+
+Route to ('/user/<username>')
+Logs in 
+
+Route to ('/addtosatchel/<objid>')
+adds object to satchel satchelAdd(objid):
+ex: /addtosatchel/oid15920303
+
+
+Route to ('/queryAll')
+
+
+Route to ('/artifact-category.html/<tribeid>')
+
+
+
+Route to ('/logout')
+
+
