@@ -35,7 +35,7 @@ def queryAll():
 
 def addToSatchel(objid):
 	conn = sqlite3.connect("app/dbase/hearstdata.db")
-	c = conn.cursor()
+	c = conn.cursor()app.config['DATABASE']
 	teachername,studname,obid=objid
 	#entries=('MRs Robin', 'Jinny', objid,'1','2')
 	entries=( teachername, studname, objid,'1','2')

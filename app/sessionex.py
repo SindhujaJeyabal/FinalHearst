@@ -14,6 +14,8 @@ def index():
 def login():
     if request.method == 'POST':
         session['username'] = request.form['username']
+        session['username'] = request.form['username']
+
         return redirect(url_for('index'))
     return '''
         <form action="" method="post">
