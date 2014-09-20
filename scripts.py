@@ -32,7 +32,7 @@ def addTable(myname):
 	#conn.close()
 	#return results
 
-	querytoExec="create table hearstmain (teacher text not null,student text not null,obj1 text not null,obj2 text not null,obj3 text not null	);"
+	querytoExec="create table hearstmain (username not null, obj not null);"
 	c.execute(querytoExec)
 	conn.commit()
 	conn.close()
@@ -60,7 +60,7 @@ def createClassLoginTable(myname):
 	#conn.close()
 	#return results
 
-	querytoExec="create table loginclass (classname text not null,login text not null, passw text, mappedteacher text);"
+	querytoExec="create table loginclass (classname text not null,role not null, login text not null, passw text, mappedteacher text);"
 	c.execute(querytoExec)
 	conn.commit()
 	conn.close()
@@ -70,15 +70,17 @@ def createClassLoginTable(myname):
 	#c.execute(query)
 	#results = [dict(myname=row[0], fname=row[1], srcname=row[2]) for row in c.fetchall()]
 
-def addUserMap():
+def addSatchelData(username,artifact_id):
 	conn = sqlite3.connect("app/dbase/hearstdata.db")
 	c = conn.cursor()
-	#objtoadd= [('RobinWollowski','Teacher','null','null'),('MikeAdams','Teacher','null','null'),('JimmyPage','Teacher','null','null'),('LarryKing','Teacher','null','null')]
-	#objtoadd= [('Mark','Student','null','RobinWollowski'),('Viny','Student','null','RobinWollowski'), ('Anand','Student','null','JimmyPage'), ('Bruce','Student','null','RobinWollowski'), ('Andy','Student','null','RobinWollowski'), ('Bradley','Student','null','RobinWollowski'), ('Suhen','Student','null','JimmyPage'), ('Katey','Student','null','JimmyPage'), ('Ashwin','Student','null','RobinWollowski'), ('Carlos','Student','null','JimmyPage'), ('Walt','Student','null','RobinWollowski'), ('Noah','Student','null','RobinWollowski'), ('Adams','Student','null','RobinWollowski'), ('Jacques','Student','null','RobinWollowski'), ('Alex','Student','null','MikeAdams'), ('HurtingFoot','Student','null','MikeAdams'), ('Kiddy','Student','null','MikeAdams')]
+	#objtoadd= [('John','Teacher','class','null'),('Amy','Student','class','John'),('Alice','Student','class','John'),('Mark','Student','class','John'), ('Ben','Student','class','John'),
+	#			('Warren','Student','class','John'), ('Tim','Student','class','John'), ('Penny','Student','class','John'), ('Emily','Student','class','John'), ('Judith','Student','class','John'),
+	#			('Diana','Student','class','John')]
 	#entries=( teachername, studname, objid,'1','2')
+	objtoadd =[(username,artifact_id)]
 
-	query='insert into usermap values (?,?,?,?)'
-	c.executemany('insert into usermap values (?,?,?,?)',objtoadd)
+	query='insert into usermap values (?,?)'
+	c.execute('insert into usermap values (?,?)',objtoadd)
 	#results = [dict(myname=row[0], fname=row[1], srcname=row[2]) for row in c.fetchall()]
 	#conn.close()
 	#return results
@@ -94,6 +96,9 @@ def addUserData():
 	#objtoadd= [('RobinWollowski','Teacher','null','null'),('MikeAdams','Teacher','null','null'),('JimmyPage','Teacher','null','null'),('LarryKing','Teacher','null','null')]
 	#objtoadd= [('Mark','Student','null','RobinWollowski'),('Viny','Student','null','RobinWollowski'), ('Anand','Student','null','JimmyPage'), ('Bruce','Student','null','RobinWollowski'), ('Andy','Student','null','RobinWollowski'), ('Bradley','Student','null','RobinWollowski'), ('Suhen','Student','null','JimmyPage'), ('Katey','Student','null','JimmyPage'), ('Ashwin','Student','null','RobinWollowski'), ('Carlos','Student','null','JimmyPage'), ('Walt','Student','null','RobinWollowski'), ('Noah','Student','null','RobinWollowski'), ('Adams','Student','null','RobinWollowski'), ('Jacques','Student','null','RobinWollowski'), ('Alex','Student','null','MikeAdams'), ('HurtingFoot','Student','null','MikeAdams'), ('Kiddy','Student','null','MikeAdams')]
 	#entries=( teachername, studname, objid,'1','2')
+	objtoadd= [('John','Teacher','class','null'),('Amy','Student','class','John'),('Alice','Student','class','John'),('Mark','Student','class','John'), ('Ben','Student','class','John'),
+				('Warren','Student','class','John'), ('Tim','Student','class','John'), ('Penny','Student','class','John'), ('Emily','Student','class','John'), ('Judith','Student','class','John'),
+				('Diana','Student','class','John')]
 
 	query='insert into usermap values (?,?,?,?)'
 	c.executemany('insert into usermap values (?,?,?,?)',objtoadd)
@@ -112,8 +117,9 @@ def addClassLogin():
 	#objtoadd= [('RobinWollowski','Teacher','null','null'),('MikeAdams','Teacher','null','null'),('JimmyPage','Teacher','null','null'),('LarryKing','Teacher','null','null')]
 	#objtoadd= [('Mark','Student','null','RobinWollowski'),('Viny','Student','null','RobinWollowski'), ('Anand','Student','null','JimmyPage'), ('Bruce','Student','null','RobinWollowski'), ('Andy','Student','null','RobinWollowski'), ('Bradley','Student','null','RobinWollowski'), ('Suhen','Student','null','JimmyPage'), ('Katey','Student','null','JimmyPage'), ('Ashwin','Student','null','RobinWollowski'), ('Carlos','Student','null','JimmyPage'), ('Walt','Student','null','RobinWollowski'), ('Noah','Student','null','RobinWollowski'), ('Adams','Student','null','RobinWollowski'), ('Jacques','Student','null','RobinWollowski'), ('Alex','Student','null','MikeAdams'), ('HurtingFoot','Student','null','MikeAdams'), ('Kiddy','Student','null','MikeAdams')]
 	#entries=( teachername, studname, objid,'1','2')
-
-	c.executemany('insert into usermap values (?,?,?,?)',objtoadd)
+	objtoadd = [('class', 'teacher', 'teacher', 'yapikapi', 'John')]
+	objtoadd = [('class', 'student', 'student','hearst','John')]
+	c.executemany('insert into loginclass values (?,?,?,?,?)',objtoadd)
 	#results = [dict(myname=row[0], fname=row[1], srcname=row[2]) for row in c.fetchall()]
 	#conn.close()
 	#return results
@@ -141,7 +147,11 @@ def alterColumns():
 	conn.close()"""
 
 if __name__ == '__main__':
-	createClassLoginTable("12")
+	addTable("")
+	addMappingTable("")
+	createClassLoginTable("")
+	addUserData()
+	addClassLogin()
 	#addUserMap()
 	#addMappingTable("not")
 	"""d= getBuds('aditya')
