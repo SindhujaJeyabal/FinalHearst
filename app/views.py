@@ -96,3 +96,21 @@ def terminate():
 
 	return redirect(url_for('index'))
 
+@app.route('/student')
+def studlogin():
+	if request.method == 'POST':
+		cl1= request.form['classname']
+		pw1 = request.form['password1']
+		tup1=(cl1,pw1)
+		l1=satchelHandler.getClass(tup1)
+		if(l1[0]=="fail"):
+			return render_template('studentform.html',fail="Not Found ... !")
+		else:
+			session['username']=l1['teachername']
+			session['teachername']=teachername
+			return render_template('studentform.html',fail="Not Found ... !")
+
+
+
+		return redirect(url_for('main'))
+	return render_template('studentform.html')
