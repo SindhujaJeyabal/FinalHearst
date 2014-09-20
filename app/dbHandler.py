@@ -12,14 +12,17 @@ def queryTeachers(myname):
 	conn.close()
 	return results
 
-def authTeachers(myname):
+def authTeachers(tup2):
 	conn = sqlite3.connect("dbase/hearstdata.db")
 	c = conn.cursor()
 	query='select count(distinct teacher) from loginclass where role = ? and login = ? and password = ?'
 	c.execute('select count(distinct teacher) from loginclass where role = ? and login = ? and password = ?',tup2)
-	results = [dict(teachername=row1[0]) for row1 in c.fetchall()]
+	results = [dict(countTeachers=row1[0]) for row1 in c.fetchall()]
 	conn.close()
-	return results
+	if len(results)>0:
+		return True
+	else:
+	return False
 
 def queryStudentForTeachers(myname):
 	conn = sqlite3.connect("dbase/hearstdata.db")

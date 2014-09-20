@@ -120,7 +120,7 @@ def teacherLogin():
 	if request.method == 'POST':
 		cl1= request.form['uname']
 		pw1 = request.form['pword']
-		tup1=('none','teacher',cl1,pw1)
+		tup1=('teacher',cl1,pw1)
 		l1=satchelHandler.getClass(tup1)
 		if(l1[0]=="fail"):
 			return render_template('studentform.html',fail="Not Found ... !")
@@ -128,4 +128,4 @@ def teacherLogin():
 			session['teachername']=l1['teachername']
 			return render_template('choosename.html',studlist=l1['liststuds'])
 		return redirect(url_for('main'))
-	return render_template('studentform.html')
+	return render_template('teacherform.html')
