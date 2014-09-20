@@ -49,3 +49,11 @@ def getClass(tup1):
 		return listall
 	except Exception as e:
 		return e
+
+def getStudentLogin(tup1):
+	try: 
+		listall={}
+		listall=dbHandler.queryStudentLogin(tup1)
+		return listall
+	except Exception as e:
+		return e
