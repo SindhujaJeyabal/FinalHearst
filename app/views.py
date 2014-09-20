@@ -88,8 +88,9 @@ def queryAllArtifacts():
 def queryAll1Artifacts():
 	artifact_list=api.get_all_artifacts('yurok')
 	artifact_list
+	count = len(api.get_all_artifacts('yurok'))
 	# show the user profile for that user
-	return render_template('artifact-category.html',artifact_list=artifact_list)
+	return render_template('artifact-category.html',artifact_list=artifact_list,count=count)
 
 @app.route('/logout')
 def terminate():
