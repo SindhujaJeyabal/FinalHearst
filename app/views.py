@@ -1,7 +1,7 @@
 from flask import render_template,request,session,redirect
 from flask import url_for
 from app import app
-from libs import apis
+from libs import api
 import dbHandler
 import satchelHandler
 
@@ -26,6 +26,12 @@ def debug():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+	if request.method == 'POST':
+		session['username'] = request.form['username']
+		return redirect(url_for('main'))
+	return render_template('form.html')
+
+def loginGuest():
 	if request.method == 'POST':
 		session['username'] = request.form['username']
 		return redirect(url_for('main'))
@@ -76,8 +82,10 @@ def queryAllArtifacts():
 
 @app.route('/artifact-category.html')
 def queryAll1Artifacts():
+	artifact_list=api.get_all_artifacts('yurok')
+	artifact_list
 	# show the user profile for that user
-	return render_template('artifact-category.html')
+	return render_template('artifact-category.html',artifact_list=artifact_list)
 
 @app.route('/logout')
 def terminate():
