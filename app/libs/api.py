@@ -108,7 +108,7 @@ def getArtifactById(objid):
 	artifact_list = [item for item in r.response['docs']]
 
 	#print "After removing, Num artifacts", len(new_list)
-	print type(artifact_list), type(artifact_list[0])
+	print type(artifact_list), type(artifact_list[0]), artifact_list[0]
 	return artifact_list
 
 def get_artifacts_tribe_category_number(tribe_name, category_name, count):
