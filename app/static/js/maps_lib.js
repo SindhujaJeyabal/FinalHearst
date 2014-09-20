@@ -199,7 +199,7 @@ var MapsLib = {
       } else {
         alert("Geocoder failed due to: " + status);
       }
-    });
+    }); 
   },
 
   drawSearchRadiusCircle: function(point) {
