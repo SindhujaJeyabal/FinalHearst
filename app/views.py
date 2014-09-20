@@ -49,7 +49,16 @@ def main():
 
 @app.route('/satchel.html')
 def satrender():
-	return render_template('satchel.html', name="name")
+    satchelContents = satchelHandler.querySatchel()
+    count = len(satchelContents)
+    objectList = []
+    for item in satchelContents:
+        print "item in satchel",item
+        print "CALLING ARTIFACT LIST"
+        obj = api.getArtifactById(item['obj'])
+        print type(obj[0])
+        objectList.append(obj[0])
+    return render_template('satchel.html', name=session['username'], count=count, artifactList=objectList)
 
 @app.route('/user/<username>')
 def show_user_profile(username):
@@ -100,7 +109,7 @@ def terminate():
 
 	return redirect(url_for('index'))
 
-@app.route('/studentlogin')
+@app.route('/studentlogin', methods=['GET', 'POST'])
 def studlogin():
 	if request.method == 'POST':
 		cl1= request.form['classname']
@@ -115,17 +124,20 @@ def studlogin():
 		return redirect(url_for('main'))
 	return render_template('studentform.html')
 
-@app.route('/teacherlogin')
+@app.route('/teacherlogin', methods=['GET', 'POST'])
 def teacherLogin():
 	if request.method == 'POST':
 		cl1= request.form['uname']
 		pw1 = request.form['pword']
 		tup1=('teacher',cl1,pw1)
-		l1=satchelHandler.getClass(tup1)
-		if(l1[0]=="fail"):
+		#l1=satchelHandler.authTeacher(tup1)
+		l1 = True
+		if(l1==False):
 			return render_template('studentform.html',fail="Not Found ... !")
 		else:
-			session['teachername']=l1['teachername']
-			return render_template('choosename.html',studlist=l1['liststuds'])
+			session['teachername']=cl1
+			#studlist=satchelHandler.queryStudentForTeachers(cl1)
+			studlist=dbHandler.queryStudentForTeachers(cl1)
+			return render_template('classadmin.html', student_list = studlist)
 		return redirect(url_for('main'))
 	return render_template('teacherform.html')

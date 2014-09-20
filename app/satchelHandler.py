@@ -8,10 +8,9 @@ import satchelHandler
 
 def addToSatchel(objid):
 	try:
-		myname=session['username']
-		myteachername=session['teachername']
-
-		tup1=(myteachername,myname,objid)
+		username=session['username']
+		print "SH:", username, objid	
+		tup1=(username,objid)
 		dbHandler.addToSatchel(tup1)
 	except Exception as e:
 		return False
@@ -19,7 +18,8 @@ def addToSatchel(objid):
 def querySatchel():
 	try:
 		listall=[]
-		listall=dbHandler.queryAll()
+		listall=dbHandler.queryAllByUser(session['username'])
+		print len(listall), listall
 		return listall
 	except Exception as e:
 		return e
@@ -49,10 +49,10 @@ def getClass(tup1):
 	except Exception as e:
 		return e
 
-def authTeacher(tup1):
+def getStudentLogin(tup1):
 	try: 
 		listall={}
-		listall=dbHandler.queryClassLogin(tup1)
+		listall=dbHandler.queryStudentLogin(tup1)
 		return listall
 	except Exception as e:
 		return e
