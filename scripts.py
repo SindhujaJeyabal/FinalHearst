@@ -149,9 +149,10 @@ def addToSatchel(tup):
 def qSatchel():
 	conn = sqlite3.connect("app/dbase/hearstdata.db")
 	c = conn.cursor()
-	query='select * from hearstmain'
-	c.execute(query)
-	results = [dict(myname=row[0], fname=row[1]) for row in c.fetchall()]
+	#query='select login,passw,mappedteacher from loginclass'
+	query2='select mappedteacher from loginclass where login =? and passw = ?'
+	c.execute(query2,('student','hearst'))
+	results = [dict(login=row[0]) for row in c.fetchall()]
 	print results
 	conn.close()
 #query='select id, friendname,data from friends where id=\''+myname+'\''+'order by id desc'

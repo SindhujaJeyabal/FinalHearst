@@ -41,6 +41,9 @@ def loginGuest():
 		return redirect(url_for('main'))
 	return render_template('form.html')
 
+@app.route('/fail/<errorcode>')
+def fail():
+	return render_template('fail.html',fail=errorcode)
 
 @app.route('/homepage.html')
 def main():
@@ -112,17 +115,31 @@ def terminate():
 @app.route('/studentlogin', methods=['GET', 'POST'])
 def studlogin():
 	if request.method == 'POST':
+		print "form control"
 		cl1= request.form['classname']
 		pw1 = request.form['password1']
+		print "form req"
 		tup1=(cl1,pw1)
-		l1=satchelHandler.getClass(tup1)
-		if(l1[0]=="fail"):
+		print "wow",tup1
+		l1=satchelHandler.getStudentLogin(tup1)
+		print "list of studs", l1
+		if(l1 is None):
 			return render_template('studentform.html',fail="Not Found ... !")
 		else:
 			session['teachername']=l1['teachername']
 			return render_template('choosename.html',studlist=l1['liststuds'])
 		return redirect(url_for('main'))
 	return render_template('studentform.html')
+
+@app.route('/studentrender/<studlogin>')
+def studentRender():
+	if 'teachername' in session:
+		session['username']= studlogin
+		return redirect(url_for('main'))
+
+	else:
+		return redirect(url_for('fail'))
+	return render_template('teacherform.html')
 
 @app.route('/teacherlogin', methods=['GET', 'POST'])
 def teacherLogin():
@@ -141,3 +158,5 @@ def teacherLogin():
 			return render_template('classadmin.html', student_list = studlist)
 		return redirect(url_for('main'))
 	return render_template('teacherform.html')
+
+
