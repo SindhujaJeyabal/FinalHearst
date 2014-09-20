@@ -397,15 +397,17 @@ span.chevron{
   text-align: center;
   text-shadow: none;
 }
+	.carousel-control:hover {
+		color: #00203e;
+	}
+
 .carousel-control.left {
 	background-image: none;
-	color: #00203e;
 }
 .carousel-control.right {
   left: auto;
   right: 0;
   background-image: none;
-  color: #00203e;
 }
 
 .carousel-control {
