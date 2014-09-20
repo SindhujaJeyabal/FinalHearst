@@ -121,12 +121,14 @@ def teacherLogin():
 		cl1= request.form['uname']
 		pw1 = request.form['pword']
 		tup1=('teacher',cl1,pw1)
-		l1=satchelHandler.authTeacher(tup1)
+		#l1=satchelHandler.authTeacher(tup1)
+		l1 = True
 		if(l1==False):
 			return render_template('studentform.html',fail="Not Found ... !")
 		else:
 			session['teachername']=cl1
-			studlist=satchelHandler.queryStudentForTeachers(cl1)
-			return render_template('choosename.html')
+			#studlist=satchelHandler.queryStudentForTeachers(cl1)
+			studlist=dbHandler.queryStudentForTeachers(cl1)
+			return render_template('classadmin.html', student_list = studlist)
 		return redirect(url_for('main'))
 	return render_template('teacherform.html')
