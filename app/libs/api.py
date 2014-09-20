@@ -66,7 +66,7 @@ def get_all_artifacts(tribe_name):
 	            'rows' : '44800',
 	            'wt' : 'json',
 	            'indent': 'on',
-	            'fl' : 'objname_s,objdescr_s,objfilecode_ss,blob_ss'}
+	            'fl' : 'id,objname_s,objdescr_s,objfilecode_ss,blob_ss'}
 
 	headers = { 'app_id' : '8dc4e11c',
 	            'app_key': '4aa1d8d78752ef675e607187c4663b17',

@@ -8,9 +8,7 @@ import satchelHandler
 
 def addToSatchel(objid):
 	try:
-		myname=session['username']
-		myteachername=session['teachername']
-
+		username=session['username']		
 		tup1=(username,objid)
 		dbHandler.addToSatchel(tup1)
 	except Exception as e:
