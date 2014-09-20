@@ -72,6 +72,20 @@ def addToSatchel(objid):
 	#c.execute(query)
 	#results = [dict(myname=row[0], fname=row[1], srcname=row[2]) for row in c.fetchall()]
 	
+def queryClassLogin(tuple1):
+	#table loginclass (classname text not null,login text not null, passw text, mappedteacher text)
+	conn = sqlite3.connect("dbase/hearstdata.db")
+	c = conn.cursor()
+	tup=('Student',myname)
+	query='select distinct mappedteacher from loginclass where login =? and passw = ?'
+	c.execute('select distinct uname from usermap where role =? and mappedteacher = ?', tuple1)
+	results = [dict(tname=tuple1[0]) for row1 in c.fetchall()]
+	tname1=results[0]['tname']
+	result={'teachername': tname1, 'liststuds': []}
+	result['liststuds']=queryStudentForTeachers(tname1)
+	#results = [dict(myname=row[0], fname=row[1], srcname=row[2]) for row in c.fetchall()]
+	conn.close()
+	return result
 
 if __name__ == '__main__':
 	queryAll()
