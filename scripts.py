@@ -134,7 +134,7 @@ def addToSatchel(tup):
 	c = conn.cursor()
 	teachername,studname,obid=objid
 	#entries=('MRs Robin', 'Jinny', objid,'1','2')
-	entries=( tup[0], tup[1],'1','2')
+	entries=( tup[0], tup[1])
 
 	query='insert into hearstmain values (?,?)'
 	c.execute('insert into hearstmain values (?,?)',entries)
@@ -146,25 +146,28 @@ def addToSatchel(tup):
 	conn.commit()
 	conn.close()
 
+def qSatchel():
+	conn = sqlite3.connect("app/dbase/hearstdata.db")
+	c = conn.cursor()
+	query='select * from hearstmain'
+	c.execute(query)
+	results = [dict(myname=row[0], fname=row[1]) for row in c.fetchall()]
+	print results
+	conn.close()
 #query='select id, friendname,data from friends where id=\''+myname+'\''+'order by id desc'
 #c.execute(query)
 #results = [dict(myname=row[0], fname=row[1], srcname=row[2]) for row in c.fetchall()]
 
 if __name__ == '__main__':
-	addTable("")
+	"""addTable("")
 	addMappingTable("")
 	createClassLoginTable("")
-	addUserData()conn.cursor()
-	#query='select id, friendname,data from friends where id=\''+myname+'\''+'order by id desc'
-	#c.execute(query)
-	#results = [dict(myname=row[0], fname=row[1], srcname=row[2]) for row in c.fetchall()]
+	addUserData()conn.cursor()"""
+	qSatchel()
 	#conn.close()
 	#return results
 
-	querytoExec="create table usermap (uname text not null,role text not null, classname text, mappedteacher text);"
-	c.ex
-	addClassLogin()
-	#addUserMap()
+	
 	#addMappingTable("not")
 	"""d= getBuds('aditya')
 	for e in d:
