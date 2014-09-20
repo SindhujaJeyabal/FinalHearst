@@ -71,14 +71,10 @@
 						<h4>Welcome to <strong>Yapi Kapi</strong>!  Please choose your name from this list:</h4>
 						<br>
 	    				<div class="list-group">
-	    						<a href="/student/studentname" class="list-group-item">Tom</a>
-	    						<a href="/student/studentname" class="list-group-item">Molly</a>
-	    						<a href="/student/studentname" class="list-group-item">Gretchen</a>
-	    						<a href="/student/studentname" class="list-group-item">Yu</a>
-	    						<a href="/student/studentname" class="list-group-item">Charlie</a>
-	    						<a href="/student/studentname" class="list-group-item">Frank</a>
-	    						<a href="/student/studentname" class="list-group-item">Martha</a>
-	    						<a href="/student/studentname" class="list-group-item">Gwen</a>
+	    				{%for stud in studlist%}
+	    						<a href="/student/{{stud['studname']}}" class="list-group-item">{{}}</a>
+	    						{%endfor%}
+	    						
 				    	</div>
 				</div>
 				<div class="col-md-3">

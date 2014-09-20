@@ -52,7 +52,17 @@ def getClass(tup1):
 def authTeacher(tup1):
 	try: 
 		listall={}
-		listall=dbHandler.queryClassLogin(tup1)
+		listall=dbHandler.authTeacher(tup1)
+		return listall
+	except Exception as e:
+		return e
+
+
+
+def queryStudentForTeachers(tup1):
+	try: 
+		listall={}
+		listall=dbHandler.queryStudentForTeachers(tup1)
 		return listall
 	except Exception as e:
 		return e

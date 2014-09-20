@@ -115,17 +115,18 @@ def studlogin():
 		return redirect(url_for('main'))
 	return render_template('studentform.html')
 
-@app.route('/teacherlogin')
+@app.route('/teacherlogin', methods=['GET', 'POST'])
 def teacherLogin():
 	if request.method == 'POST':
 		cl1= request.form['uname']
 		pw1 = request.form['pword']
 		tup1=('teacher',cl1,pw1)
-		l1=satchelHandler.getClass(tup1)
-		if(l1[0]=="fail"):
+		l1=satchelHandler.authTeacher(tup1)
+		if(l1==False):
 			return render_template('studentform.html',fail="Not Found ... !")
 		else:
-			session['teachername']=l1['teachername']
-			return render_template('choosename.html',studlist=l1['liststuds'])
+			session['teachername']=cl1
+			studlist=satchelHandler.queryStudentForTeachers(cl1)
+			return render_template('choosename.html')
 		return redirect(url_for('main'))
 	return render_template('teacherform.html')

@@ -22,12 +22,12 @@ def authTeachers(tup2):
 	if len(results)>0:
 		return True
 	else:
-	return False
+		return False
 
 def queryStudentForTeachers(myname):
 	conn = sqlite3.connect("dbase/hearstdata.db")
 	c = conn.cursor()
-	tup=('Student',myname)
+	tup=('student',myname)
 	query='select distinct uname from usermap where role =? and mappedteacher = ?'
 	c.execute('select distinct uname from usermap where role =? and mappedteacher = ?', tup)
 	results = [dict(studname=row1[0]) for row1 in c.fetchall()]
