@@ -11,12 +11,15 @@ def queryTeachers(myname):
 	#results = [dict(myname=row[0], fname=row[1], srcname=row[2]) for row in c.fetchall()]
 	conn.close()
 	return results
-	"""
-	querytoExec="create table hearstmain (teacher text not null,student text not null,obj1 text not null,obj2 text not null,obj3 text not null	);"
-	c.execute(querytoExec)
-	conn.commit()
+
+def authTeachers(myname):
+	conn = sqlite3.connect("dbase/hearstdata.db")
+	c = conn.cursor()
+	query='select count(distinct teacher) from loginclass where role = ? and login = ? and password = ?'
+	c.execute('select count(distinct teacher) from loginclass where role = ? and login = ? and password = ?',tup2)
+	results = [dict(teachername=row1[0]) for row1 in c.fetchall()]
 	conn.close()
-	"""
+	return results
 
 def queryStudentForTeachers(myname):
 	conn = sqlite3.connect("dbase/hearstdata.db")

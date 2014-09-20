@@ -24,10 +24,6 @@ def debug():
 	#return "Static URL"+url_for('static', filename='css/bootstrap.min.css')
 	return app.config['DATABASE']+apis.printme()
 
-@app.route('/artifacts.html')
-def routeArt():
-	#return "Static URL"+url_for('static', filename='css/bootstrap.min.css')
-	return render_template('artifacts.html')
 @app.route('/login', methods=['GET', 'POST'])
 def login():
 	if request.method == 'POST':
@@ -99,7 +95,7 @@ def terminate():
 
 	return redirect(url_for('index'))
 
-@app.route('/studentlogin')
+@app.route('/student')
 def studlogin():
 	if request.method == 'POST':
 		cl1= request.form['classname']
@@ -109,22 +105,11 @@ def studlogin():
 		if(l1[0]=="fail"):
 			return render_template('studentform.html',fail="Not Found ... !")
 		else:
-			session['teachername']=l1['teachername']
-			return render_template('choosename.html',studlist=l1['liststuds'])
-		return redirect(url_for('main'))
-	return render_template('studentform.html')
-
-@app.route('/teacherlogin')
-def teacherLogin():
-	if request.method == 'POST':
-		cl1= request.form['uname']
-		pw1 = request.form['pword']
-		tup1=('none','teacher',cl1,pw1)
-		l1=satchelHandler.getClass(tup1)
-		if(l1[0]=="fail"):
+			session['username']=l1['teachername']
+			session['teachername']=teachername
 			return render_template('studentform.html',fail="Not Found ... !")
-		else:
-			session['teachername']=l1['teachername']
-			return render_template('choosename.html',studlist=l1['liststuds'])
+
+
+
 		return redirect(url_for('main'))
 	return render_template('studentform.html')
