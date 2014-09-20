@@ -39,3 +39,12 @@ def queryAllTeachers():
 		return listall
 	except Exception as e:
 		return e
+
+
+def getClass(tup1):
+	try: 
+		listall={}
+		listall=dbHandler.queryClassLogin(tup1)
+		return listall
+	except Exception as e:
+		return e
