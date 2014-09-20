@@ -25,9 +25,9 @@ def authTeachers(tup2):
 		return False
 
 def queryStudentForTeachers(myname):
-	conn = sqlite3.connect("dbase/hearstdata.db")
+	conn = sqlite3.connect("app/dbase/hearstdata.db")
 	c = conn.cursor()
-	tup=('student',myname)
+	tup=('Student',myname)
 	query='select distinct uname from usermap where role =? and mappedteacher = ?'
 	c.execute('select distinct uname from usermap where role =? and mappedteacher = ?', tup)
 	results = [dict(studname=row1[0]) for row1 in c.fetchall()]
@@ -126,6 +126,6 @@ def addToSatchel(tup):
 
 if __name__ == '__main__':
 	queryAll()
-	"""d= getBuds('aditya')
+	"""d=Buds('aditya')
 	for e in d:
 		print e['fname']"""
