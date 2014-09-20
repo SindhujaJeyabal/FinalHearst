@@ -13,10 +13,15 @@ body {
 		padding-top: 0px;
 	}
 
-img{
+p {
+	font-size: 13px;
+	letter-spacing: 0.02em;
+}
+
+/*img{
     max-height:100%;
     max-width:100%;
-}
+}*/
 
 .btn {
 	border-radius: 2px;
@@ -82,7 +87,8 @@ img{
 }
 
 .tribe-map-container {
-	padding: 40px 3px 0px 7px;
+	padding: 0px;
+	margin-top: 80px;
 }
 
 .tribe-map {
@@ -106,9 +112,12 @@ img{
 }
 	@media (max-width: 991px) {
 		.tribe-sidebar {
-
 		}
-	}	
+	}
+
+.tribe-sidebar hr {
+	border-top: 1px solid #444;
+}
 
 .tribe-sidebar h1 {
 	font-size: 30px;
@@ -121,7 +130,34 @@ img{
 	font-weight: 100;
 	letter-spacing: 0.1em;
 	padding-top: 5px;
+	padding-bottom: 5px;
 }
+
+.tribe-sidebar h2.shape-header {
+	margin-top: 0;
+}
+
+.tribe-sidebar a.tribe-emph {
+	color: #FDB515;
+	padding-bottom: 3px;
+	border-bottom: 1px solid #FDB515;
+}
+
+.tribe-sidebar a.tribe-emph:hover {
+	text-decoration: none;
+}
+
+.tribe-sidebar .use-my-loc {
+	color: #FDB515;
+	float: right;
+}
+	@media (max-width: 991px) {
+		.tribe-sidebar .use-my-loc {
+			float: left;
+			display: block;
+			padding-bottom: 20px;
+		}
+	}
 
 .tribe-regions {
 	margin-top: 20px;
@@ -308,6 +344,9 @@ img{
 	font-weight: bold;
 }
 
+/**************************/
+/* Satchel Page */
+/**************************/
 .satchel-row {
 	margin: 20px 0 0 0;
 }
@@ -315,3 +354,143 @@ img{
 	.satchel-row img {
 		padding-bottom: 10px;
 	}
+
+/**************************/
+/* All Artifacts Page */
+/**************************/
+.chevron{
+	text-align: center;
+}
+
+span.chevron{
+	padding-top: 90%;
+	font-size: 1.5em;
+}
+
+.category-divider{
+	border-bottom-color: #E5E5E5;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+.carousel .thumbnail {
+  display: block;
+  padding: 4px;
+  margin-bottom: 20px;
+  line-height: 1.42857143;
+  -webkit-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+  border-radius: 0;
+  border: none;
+  background-color: none;
+}
+
+.carousel-control {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 15%;
+  opacity: .5;
+  font-size: 20px;
+  color: #00203e;
+  text-align: center;
+  text-shadow: none;
+}
+	.carousel-control:hover {
+		color: #00203e;
+	}
+
+.carousel-control.left {
+	background-image: none;
+}
+.carousel-control.right {
+  left: auto;
+  right: 0;
+  background-image: none;
+}
+
+.carousel-control {
+  padding-top:10.25%;
+  width:5%;
+}
+
+@media screen and (min-width: 768px) { 
+	.carousel-control .glyphicon-chevron-left, 
+	.carousel-control .glyphicon-chevron-right, 
+	.carousel-control .icon-prev, 
+	.carousel-control .icon-next {
+		margin-top: -65px;
+	}
+}
+
+.added {
+	position: absolute;
+	right: 15px;
+	top: 0px;
+	height: 24px;
+	width: 60px;
+	opacity: 1;
+	color: #FFFFFF;
+	text-align: center;
+	padding: 3px;
+	z-index: 999;
+	background-color: #D9661F;
+}
+
+	span.added {
+		position: absolute;
+		right: 0px;
+		top: 0px;
+		font-size: 11px;
+		font-weight: 500;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		padding-top: 3px;
+		background-color: #D9661F;
+	}
+
+/**************************/
+/* Search Map */
+/**************************/
+.map_container {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+#map_canvas {
+	margin-top: 80px;
+}
+
+#map_canvas img {
+	max-width: none !important;
+} 
+
+.filter-box { 
+  height: 15px; 
+  width: 15px;  
+  display: inline-block;
+  *border-right-width: 2px;
+  *border-bottom-width: 2px;
+  -webkit-border-radius: 5px;
+     -moz-border-radius: 5px; 
+          border-radius: 5px;
+  -webkit-background-clip: padding-box;
+     -moz-background-clip: padding;
+          background-clip: padding-box; 
+}
+
+.filter-yellow { background-color: #FBF358; }
+.filter-green { background-color: #00E13C; }
+.filter-blue { background-color: #5781FC; }
+.filter-purple { background-color: #7C54FB; }
+.filter-red { background-color: #FB6353; }
+
+canvas {-ms-touch-action: double-tap-zoom;}
+
+.item-list {
+	margin-bottom: 15px;
+}
+
+
+/*change breakpoint to maxwidth 983*/

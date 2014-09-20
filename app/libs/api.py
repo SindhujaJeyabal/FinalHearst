@@ -11,6 +11,10 @@ class Payload(object):
 def get_utf8(ip_list):
 	return [item.encode('utf8',"replace") for item in ip_list]
 
+#helper function
+def get_category_name_fcode(fc_str):
+	pass
+
 #Gets the master data of our scope
 #All details about california tribes and their artifacts
 
@@ -81,6 +85,10 @@ def get_all_artifacts(tribe_name):
 	#print "After removing, Num artifacts", len(new_list)
 	print type(artifact_list), type(artifact_list[0])
 	return artifact_list
+
+def get_artifacts_tribe_category_number(tribe_name, category_name, count):
+	master_list = get_all_artifacts(tribe_name)
+	#reqd_list = [item for item in master_list if item['']]
 
 #Gives the url for the image
 #Can be potentially used in the bootstrap elements - EXPLORE

@@ -393,14 +393,10 @@ span.chevron{
   width: 15%;
   opacity: .5;
   font-size: 20px;
-  color: #00203e;
+  color: #fff;
   text-align: center;
   text-shadow: none;
 }
-	.carousel-control:hover {
-		color: #00203e;
-	}
-
 .carousel-control.left {
 	background-image: none;
 }

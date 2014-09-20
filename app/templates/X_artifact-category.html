@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 	<head>
@@ -6,9 +5,9 @@
 		<title>Hack the Hearst - I School Edition</title>
 
 		<!-- Bootstrap CSS -->
-		<link href="css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
+	<link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" type="text/css" rel="stylesheet"/>
 		<!-- Custom CSS -->
-		<link href="css/homepage.css" type="text/css" rel="stylesheet"/>
+		<link href="{{ url_for('static', filename='css/homepage.css') }}" type="text/css" rel="stylesheet"/>
 		<!-- Google Fonts: Open Sans -->
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,700,400' rel='stylesheet' type='text/css'>
 
@@ -40,7 +39,7 @@
 				        	</a>
 				        </li>
 				        <li class="active">
-				        	<a href="artifacts.html">
+				        	<a href="artifact-category.html">
 				        		<span class="circle-number">2</span> Choose Artifacts
 				        	</a>
 				        </li>
@@ -69,14 +68,14 @@
 
 	    <div class="container">
 	    	<ol class="breadcrumb">
-			  <li><a href="artifacts.html">&lt; return to all artifacts</a></li>
+			  <li><a href="#">&lt; return to all artifacts</a></li>
 			</ol>
 		</div>
 
 		<div class="container">
 	    	<div class="row">
 	    		<div class="col-xs-6 col-md-3">
-	    			<a href="#" class="add-to-satchel" data-toggle="tooltip" data-original-title="Add item to satchel">
+	    			<a href="#" class="add-to-satchel">
 	    				<span class="glyphicon glyphicon-briefcase"></span>
 	    				<span class="satchel-btn-txt">Add +</span>
 	    			</a>
@@ -87,127 +86,127 @@
 					</div>
 				</div>
 	    		<div class="col-xs-6 col-md-3">
-	    			<a href="#" class="add-to-satchel" data-toggle="tooltip" data-original-title="Add item to satchel">
+	    			<a href="#" class="add-to-satchel">
 	    				<span class="glyphicon glyphicon-briefcase"></span>
 	    				<span class="satchel-btn-txt">Add +</span>
 	    			</a>
 	    			<div class="thumbnail-container">
 					    <a data-toggle="modal" data-target="#artifact-item-1" class="thumbnail">
-					    	<img class="artifact-thumb" src="https://dev.cspace.berkeley.edu/pahma_project/imageserver/blobs/f3511ec2-56ee-4f65-a7be/derivatives/OriginalJpeg/content" alt="..." />
+					    	<img class="artifact-thumb" src="https://dev.cspace.berkeley.edu/pahma_project/imageserver/blobs/edea438d-d5a4-4bb9-8678/derivatives/OriginalJpeg/content" alt="..." />
 					    </a>
 					</div>
 				</div>
 	    		<div class="col-xs-6 col-md-3">
-	    			<a href="#" class="add-to-satchel" data-toggle="tooltip" data-original-title="Add item to satchel">
+	    			<a href="#" class="add-to-satchel">
 	    				<span class="glyphicon glyphicon-briefcase"></span>
 	    				<span class="satchel-btn-txt">Add +</span>
 	    			</a>
 	    			<div class="thumbnail-container">
 					    <a data-toggle="modal" data-target="#artifact-item-1" class="thumbnail">
-					    	<img class="artifact-thumb" src="https://dev.cspace.berkeley.edu/pahma_project/imageserver/blobs/f3511ec2-56ee-4f65-a7be/derivatives/OriginalJpeg/content" alt="..." />
+					    	<img class="artifact-thumb" src="https://dev.cspace.berkeley.edu/pahma_project/imageserver/blobs/5b3874c0-afb9-4ecf-9dfd/derivatives/OriginalJpeg/content" alt="..." />
 					    </a>
 					</div>
 				</div>
 	    		<div class="col-xs-6 col-md-3">
-	    			<a href="#" class="add-to-satchel" data-toggle="tooltip" data-original-title="Add item to satchel">
+	    			<a href="#" class="add-to-satchel">
 	    				<span class="glyphicon glyphicon-briefcase"></span>
 	    				<span class="satchel-btn-txt">Add +</span>
 	    			</a>
 	    			<div class="thumbnail-container">
 					    <a data-toggle="modal" data-target="#artifact-item-1" class="thumbnail">
-					    	<img class="artifact-thumb" src="https://dev.cspace.berkeley.edu/pahma_project/imageserver/blobs/f3511ec2-56ee-4f65-a7be/derivatives/OriginalJpeg/content" alt="..." />
-					    </a>
-					</div>
-				</div>
-	    	</div>
-	    	<div class="row">
-	    		<div class="col-xs-6 col-md-3">
-	    			<a href="#" class="add-to-satchel" data-toggle="tooltip" data-original-title="Add item to satchel">
-	    				<span class="glyphicon glyphicon-briefcase"></span>
-	    				<span class="satchel-btn-txt">Add +</span>
-	    			</a>
-	    			<div class="thumbnail-container">
-					    <a data-toggle="modal" data-target="#artifact-item-1" class="thumbnail">
-					    	<img class="artifact-thumb" src="https://dev.cspace.berkeley.edu/pahma_project/imageserver/blobs/f3511ec2-56ee-4f65-a7be/derivatives/OriginalJpeg/content" alt="..." />
-					    </a>
-					</div>
-				</div>
-	    		<div class="col-xs-6 col-md-3">
-	    			<a href="#" class="add-to-satchel" data-toggle="tooltip" data-original-title="Add item to satchel">
-	    				<span class="glyphicon glyphicon-briefcase"></span>
-	    				<span class="satchel-btn-txt">Add +</span>
-	    			</a>
-	    			<div class="thumbnail-container">
-					    <a data-toggle="modal" data-target="#artifact-item-1" class="thumbnail">
-					    	<img class="artifact-thumb" src="https://dev.cspace.berkeley.edu/pahma_project/imageserver/blobs/f3511ec2-56ee-4f65-a7be/derivatives/OriginalJpeg/content" alt="..." />
-					    </a>
-					</div>
-				</div>
-	    		<div class="col-xs-6 col-md-3">
-	    			<a href="#" class="add-to-satchel" data-toggle="tooltip" data-original-title="Add item to satchel">
-	    				<span class="glyphicon glyphicon-briefcase"></span>
-	    				<span class="satchel-btn-txt">Add +</span>
-	    			</a>
-	    			<div class="thumbnail-container">
-					    <a data-toggle="modal" data-target="#artifact-item-1" class="thumbnail">
-					    	<img class="artifact-thumb" src="https://dev.cspace.berkeley.edu/pahma_project/imageserver/blobs/f3511ec2-56ee-4f65-a7be/derivatives/OriginalJpeg/content" alt="..." />
-					    </a>
-					</div>
-				</div>
-	    		<div class="col-xs-6 col-md-3">
-	    			<a href="#" class="add-to-satchel" data-toggle="tooltip" data-original-title="Add item to satchel">
-	    				<span class="glyphicon glyphicon-briefcase"></span>
-	    				<span class="satchel-btn-txt">Add +</span>
-	    			</a>
-	    			<div class="thumbnail-container">
-					    <a data-toggle="modal" data-target="#artifact-item-1" class="thumbnail">
-					    	<img class="artifact-thumb" src="https://dev.cspace.berkeley.edu/pahma_project/imageserver/blobs/f3511ec2-56ee-4f65-a7be/derivatives/OriginalJpeg/content" alt="..." />
+					    	<img class="artifact-thumb" src="https://dev.cspace.berkeley.edu/pahma_project/imageserver/blobs/fe43830a-7cf7-4283-86d4/derivatives/OriginalJpeg/content" alt="..." />
 					    </a>
 					</div>
 				</div>
 	    	</div>
 	    	<div class="row">
 	    		<div class="col-xs-6 col-md-3">
-	    			<a href="#" class="add-to-satchel" data-toggle="tooltip" data-original-title="Add item to satchel">
+	    			<a href="#" class="add-to-satchel">
 	    				<span class="glyphicon glyphicon-briefcase"></span>
 	    				<span class="satchel-btn-txt">Add +</span>
 	    			</a>
 	    			<div class="thumbnail-container">
 					    <a data-toggle="modal" data-target="#artifact-item-1" class="thumbnail">
-					    	<img class="artifact-thumb" src="https://dev.cspace.berkeley.edu/pahma_project/imageserver/blobs/f3511ec2-56ee-4f65-a7be/derivatives/OriginalJpeg/content" alt="..." />
+					    	<img class="artifact-thumb" src="https://dev.cspace.berkeley.edu/pahma_project/imageserver/blobs/d6173cd8-602d-4c3c-b625/derivatives/OriginalJpeg/content" alt="..." />
 					    </a>
 					</div>
 				</div>
 	    		<div class="col-xs-6 col-md-3">
-	    			<a href="#" class="add-to-satchel" data-toggle="tooltip" data-original-title="Add item to satchel">
+	    			<a href="#" class="add-to-satchel">
 	    				<span class="glyphicon glyphicon-briefcase"></span>
 	    				<span class="satchel-btn-txt">Add +</span>
 	    			</a>
 	    			<div class="thumbnail-container">
 					    <a data-toggle="modal" data-target="#artifact-item-1" class="thumbnail">
-					    	<img class="artifact-thumb" src="https://dev.cspace.berkeley.edu/pahma_project/imageserver/blobs/f3511ec2-56ee-4f65-a7be/derivatives/OriginalJpeg/content" alt="..." />
+					    	<img class="artifact-thumb" src="https://dev.cspace.berkeley.edu/pahma_project/imageserver/blobs/0177813e-cee5-444e-bed0/derivatives/OriginalJpeg/content" alt="..." />
 					    </a>
 					</div>
 				</div>
 	    		<div class="col-xs-6 col-md-3">
-	    			<a href="#" class="add-to-satchel" data-toggle="tooltip" data-original-title="Add item to satchel">
+	    			<a href="#" class="add-to-satchel">
 	    				<span class="glyphicon glyphicon-briefcase"></span>
 	    				<span class="satchel-btn-txt">Add +</span>
 	    			</a>
 	    			<div class="thumbnail-container">
 					    <a data-toggle="modal" data-target="#artifact-item-1" class="thumbnail">
-					    	<img class="artifact-thumb" src="https://dev.cspace.berkeley.edu/pahma_project/imageserver/blobs/f3511ec2-56ee-4f65-a7be/derivatives/OriginalJpeg/content" alt="..." />
+					    	<img class="artifact-thumb" src="https://dev.cspace.berkeley.edu/pahma_project/imageserver/blobs/03ed54e7-3bba-49ef-901b/derivatives/OriginalJpeg/content" alt="..." />
 					    </a>
 					</div>
 				</div>
 	    		<div class="col-xs-6 col-md-3">
-	    			<a href="#" class="add-to-satchel" data-toggle="tooltip" data-original-title="Add item to satchel">
+	    			<a href="#" class="add-to-satchel">
 	    				<span class="glyphicon glyphicon-briefcase"></span>
 	    				<span class="satchel-btn-txt">Add +</span>
 	    			</a>
 	    			<div class="thumbnail-container">
 					    <a data-toggle="modal" data-target="#artifact-item-1" class="thumbnail">
-					    	<img class="artifact-thumb" src="https://dev.cspace.berkeley.edu/pahma_project/imageserver/blobs/f3511ec2-56ee-4f65-a7be/derivatives/OriginalJpeg/content" alt="..." />
+					    	<img class="artifact-thumb" src="https://dev.cspace.berkeley.edu/pahma_project/imageserver/blobs/9fd82e57-42e2-4c2d-939b/derivatives/OriginalJpeg/content" alt="..." />
+					    </a>
+					</div>
+				</div>
+	    	</div>
+	    	<div class="row">
+	    		<div class="col-xs-6 col-md-3">
+	    			<a href="#" class="add-to-satchel">
+	    				<span class="glyphicon glyphicon-briefcase"></span>
+	    				<span class="satchel-btn-txt">Add +</span>
+	    			</a>
+	    			<div class="thumbnail-container">
+					    <a data-toggle="modal" data-target="#artifact-item-1" class="thumbnail">
+					    	<img class="artifact-thumb" src="https://dev.cspace.berkeley.edu/pahma_project/imageserver/blobs/538d4fff-7c08-4e3c-9889/derivatives/OriginalJpeg/content" alt="..." />
+					    </a>
+					</div>
+				</div>
+	    		<div class="col-xs-6 col-md-3">
+	    			<a href="#" class="add-to-satchel">
+	    				<span class="glyphicon glyphicon-briefcase"></span>
+	    				<span class="satchel-btn-txt">Add +</span>
+	    			</a>
+	    			<div class="thumbnail-container">
+					    <a data-toggle="modal" data-target="#artifact-item-1" class="thumbnail">
+					    	<img class="artifact-thumb" src="https://dev.cspace.berkeley.edu/pahma_project/imageserver/blobs/8f32ebdc-ac35-46be-8261/derivatives/OriginalJpeg/content" alt="..." />
+					    </a>
+					</div>
+				</div>
+	    		<div class="col-xs-6 col-md-3">
+	    			<a href="#" class="add-to-satchel">
+	    				<span class="glyphicon glyphicon-briefcase"></span>
+	    				<span class="satchel-btn-txt">Add +</span>
+	    			</a>
+	    			<div class="thumbnail-container">
+					    <a data-toggle="modal" data-target="#artifact-item-1" class="thumbnail">
+					    	<img class="artifact-thumb" src="https://dev.cspace.berkeley.edu/pahma_project/imageserver/blobs/ddecf66f-04bb-483a-bb3c/derivatives/OriginalJpeg/content" alt="..." />
+					    </a>
+					</div>
+				</div>
+	    		<div class="col-xs-6 col-md-3">
+	    			<a href="#" class="add-to-satchel">
+	    				<span class="glyphicon glyphicon-briefcase"></span>
+	    				<span class="satchel-btn-txt">Add +</span>
+	    			</a>
+	    			<div class="thumbnail-container">
+					    <a data-toggle="modal" data-target="#artifact-item-1" class="thumbnail">
+					    	<img class="artifact-thumb" src="https://dev.cspace.berkeley.edu/pahma_project/imageserver/blobs/9e3cb4e0-6f66-4107-a945/derivatives/OriginalJpeg/content" alt="..." />
 					    </a>
 					</div>
 				</div>
@@ -246,26 +245,11 @@
 				</div>
 			</div>
 		</div>
- 
+
 
 		<!-- Introduce Bootstrap JS at the bottom -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-		<script src="/static/js/bootstrap.min.js"></script>
-
-		<script type="text/javascript">
-            $(document).ready(function() {
-
-            	$('.add-to-satchel').tooltip({'placement':'right'}); 
-
-                $( ".add-to-satchel" ).click(function() {
-				  $( this ).toggleClass( "added" );
-				  $( this ).html("<span class='added'>ADDED</span>");
-				  $( this ).tooltip('destroy');
-				});
-
-            }); //END $(document).ready()
-
-        </script>
+		<script src="js/bootstrap.min.js"></script>
 
 	</body>
 </html>
