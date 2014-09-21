@@ -83,7 +83,7 @@ def get_all_artifacts(tribe_name):
 	artifact_tribe = [item for item in r.response['docs'] if (("objname_s" in item.keys()) and ("objdescr_s" in item.keys()) and ("objfilecode_ss" in item.keys()) and ("blob_ss" in item.keys())) ]
 
 	#print "After removing, Num artifacts", len(new_list)
-	print type(artifact_tribe), type(artifact_tribe[0])
+	#print type(artifact_tribe), type(artifact_tribe[0])
 	return artifact_tribe
 
 def get_artifacts_category_for_tribe(tribe_name):

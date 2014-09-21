@@ -97,6 +97,9 @@ def fail():
 def main():
 	return render_template('homepage.html', name=session['username'])
 
+@app.route('/about.html')
+def aboutpage():
+	return render_template('about.html')
 
 @app.route('/satchel.html')
 def satrender():
@@ -121,7 +124,7 @@ def show_user_profile(username):
 def satchelAdd(objid):
 	# This is going to add objid to the current requestor
 	satchelHandler.addToSatchel(objid)
-	return "Success !!!!"
+	return render_template('satchel-success.html')
 
 @app.route('/queryAll')
 def queryAll():
