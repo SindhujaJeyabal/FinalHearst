@@ -84,7 +84,7 @@ var MapsLib = {
       var path = poly.getPath();
       if(path.getLength() == 4) {
         path.push(markers[0].getPosition());
-        polySearch();
+        MapsLib.polySearch();
       }
     });
 
@@ -143,15 +143,17 @@ var MapsLib = {
     var results_shape = $("#resultlist_shape");
     results_shape.hide().empty();
     for (var row in total) {
-      template = "\
+      for (var l in n=total[row][1].split("; ")) {
+        template = "\
         <div class='row-fluid item-list'>\
           <div class='span12'>\
             <strong>" + total[row][0] + "</strong>\
             <br />\
-            " + total[row][1] + "\
-          </div>\
+            <a style='cursor: pointer' href='/artifacts.html/" + n[l] + "'>" + n[l] + "\
+          </a></div>\
         </div>";
-      results_shape.append(template);
+        results_shape.append(template);
+      }
     }
     if (totalFound == 1)
       name = "Location";
@@ -377,15 +379,17 @@ var MapsLib = {
     }
     else {
       for (var row in data) {
-        template = "\
+        for (var l in n=data[row][1].split("; ")) {
+          template = "\
           <div class='row item-list'>\
             <div class='col-md-12'>\
               <strong>" + data[row][0] + "</strong>\
               <br />\
-              " + data[row][1] + "\
-            </div>\
+              <a style='cursor: pointer' href='/artifacts.html/" + n[l] + "'>" + n[l] + "\
+            </a></div>\
           </div>";
-        results.append(template);
+          results.append(template);
+        }
       };
       // $( "#view_mode_shape" ).show();
     };

@@ -80,11 +80,11 @@ def get_all_artifacts(tribe_name):
 	result = urllib2.urlopen(req).read()
 	r = Payload(result)
 	#print "Total number of artifcats:", len(r.response['docs'])
-	artifact_list = [item for item in r.response['docs'] if (("objname_s" in item.keys()) and ("objdescr_s" in item.keys()) and ("objfilecode_ss" in item.keys()) and ("blob_ss" in item.keys())) ]
+	artifact_tribe = [item for item in r.response['docs'] if (("objname_s" in item.keys()) and ("objdescr_s" in item.keys()) and ("objfilecode_ss" in item.keys()) and ("blob_ss" in item.keys())) ]
 
 	#print "After removing, Num artifacts", len(new_list)
-	print type(artifact_list), type(artifact_list[0])
-	return artifact_list
+	print type(artifact_tribe), type(artifact_tribe[0])
+	return artifact_tribe
 
 def getArtifactById(objid):
 	url = "https://apis.berkeley.edu/hearst_museum/select"
@@ -108,12 +108,13 @@ def getArtifactById(objid):
 	artifact_list = [item for item in r.response['docs']]
 
 	#print "After removing, Num artifacts", len(new_list)
-	print type(artifact_list), type(artifact_list[0]), artifact_list[0]
+	print type(artifact_list), type(artifact_list[0])
 	return artifact_list
 
-def get_artifacts_tribe_category_number(tribe_name, category_name, count):
+def get_artifacts_tribe_category(tribe_name, category_name):
 	master_list = get_all_artifacts(tribe_name)
-	#reqd_list = [item for item in master_list if item['']]
+	artifacts_category = [item for item in master_list if category_name in item['objfilecode_ss']]
+	return artifacts_category
 
 #Gives the url for the image
 #Can be potentially used in the bootstrap elements - EXPLORE
