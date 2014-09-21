@@ -62,10 +62,9 @@ def queryAllArtifactsForTribe(tribename):
 		categ_copy = categ[:]
 		categ_copy=categ_copy.replace(" ", "ZZZZZ")
 		link_categ.append(categ_copy)
-		print "views ", len(categ_arts[categ]),categ,"                ----------                        ",categ_copy
-
+		
 	#print categ_arts
-	return render_template('artifacts.html',artifact_list=categ_arts, category_list=category_tribes, tribe_name = tribename, link_categlist=link_categ)
+	return render_template('artifacts.html',artifact_list=categ_arts, category_list=category_tribes, tribe_name = tribename, link_categlist=link_categ, total_count=len(artifact_tribes))
 
 @app.route('/artifact-category.html/<tribename>/<categoryname>')
 def queryAllArtifactsForCategoryinTribe(tribename,categoryname) :
@@ -75,11 +74,7 @@ def queryAllArtifactsForCategoryinTribe(tribename,categoryname) :
 
 	newCateg=categoryname.replace("ZZZZZ", " ")
 	artifacts_category = api.get_artifacts_tribe_category(tribename, newCateg)
-	return render_template('artifact-category.html',artifact_list=artifacts_category, categ_name = categoryname)
-
-	artifacts_category = api.get_artifacts_tribe_category(tribename, categoryname)
-	return render_template('artifact-category.html',artifact_list=artifacts_category,categoryname=categoryname,tribename=tribename)
-
+	return render_template('artifact-category.html',artifact_list=artifacts_category, categ_name = newCateg, tribe_name = tribename, count = len(artifacts_category))
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():

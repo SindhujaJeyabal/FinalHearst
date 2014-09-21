@@ -58,12 +58,12 @@
 		    <div class="container">
 		   		<div class="row">
 					<div class="col-md-8 col-xs-8">
-<<<<<<< HEAD
+
 						{% set cName = categ_name %}
-						<h3>{{cName}} <span class="category-h3-details">Artifacts for the Hupa Tribe</span></h3>
-=======
-						<h3>{{categoryname}}<span class="category-h3-details">Artifacts for the {{tribename}} Tribe</span></h3>
->>>>>>> 124f853405f08627269042d902ce2af3b2090e45
+						<!--h3>{{cName}} <span class="category-h3-details">Artifacts for {{tribename}}</span></h3-->
+						{% set tribeName = tribe_name %}
+						<h3>{{cName}}<span class="category-h3-details">Artifacts for {{tribeName}} </span></h3>
+
 					</div>
 					<div class="col-md-4 col-xs-4">
 						<h4 class="text-right">{{count}} Objects Found</h4>
@@ -129,7 +129,8 @@
 					<div class="modal-body">
 				    	<div class="row">
 							<div class="col-md-6">
-					    		<p><strong>Tribe:</strong> Yurok </p>
+								{% set tribeName = tribe_name %}
+					    		<p><strong>Tribe:</strong> {{tribeName}} </p>
 					    		<p>
 					    			<strong>Item Description:</strong><br/>
 					    			{{x['objdescr_s']}}
