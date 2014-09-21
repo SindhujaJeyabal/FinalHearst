@@ -18,7 +18,9 @@ def index():
 		#return 'Logged in as %s' %session['username']		
 		return redirect(url_for('main'))
 
-	return redirect(url_for('login'))
+	#return redirect(url_for('login'))
+	return render_template('landingpage.html')
+	
 @app.route('/debug')
 def debug():
 	#return "Static URL"+url_for('static', filename='css/bootstrap.min.css')
