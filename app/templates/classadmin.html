@@ -57,7 +57,13 @@
 						<h3>Manage Your Class</h3>
 					</div>
 					<div class="col-md-4 col-xs-4">
-						<h4 class="text-right">XX Students</h4>
+						<h4 class="text-right">
+							{% if student_list|length <= 1 %}
+								{{student_list|length}} Student
+							{% else %}
+								{{student_list|length}} Students
+							{% endif %}
+						</h4>
 					</div>
 	  			</div>
 	  		</div>
