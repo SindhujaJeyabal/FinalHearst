@@ -24,6 +24,15 @@ def querySatchel():
 	except Exception as e:
 		return e
 
+def querySatchelForStudent(sname):
+	try:
+		listall=[]
+		listall=dbHandler.queryAllByUser(sname)
+		print len(listall), listall
+		return listall
+	except Exception as e:
+		return e
+
 def queryAllArtifacts(tribeid):
 	try:
 		listall=[]

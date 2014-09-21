@@ -93,15 +93,10 @@ def queryStudentLogin(tuple1):
 def queryAllByUser(username):
 	conn = sqlite3.connect("app/dbase/hearstdata.db")
 	c = conn.cursor()
-	query='select * from hearstmain where username=' + username
+	query='select * from hearstmain where username=' +"'"+ username +"'"
 	c.execute(query)
 	results = [dict(username=row[0], obj=row[1]) for row in c.fetchall()]
 	conn.close()
-	"""str1='w'
-	print results
-	for strin in results:
-	str1=str1+strin['username']
-	print str1"""
 	return results
 
 def addToSatchel(tup):

@@ -23,7 +23,14 @@ create table friends (
    data text not null
 );
     """
-
+def queryAllByUser(username):
+	conn = sqlite3.connect("app/dbase/hearstdata.db")
+	c = conn.cursor()
+	query='select * from hearstmain where username=' + 'Amy'
+	c.execute(query)
+	results = [dict(username=row[0], obj=row[1]) for row in c.fetchall()]
+	conn.close()
+	return results
 def addTable(myname):
 	conn = sqlite3.connect("app/dbase/hearstdata.db")
 	c = conn.cursor()
