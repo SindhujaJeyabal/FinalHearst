@@ -69,11 +69,10 @@ def login():
 		return redirect(url_for('main'))
 	return render_template('landingpage.html')
 
+@app.route('/guestlogin', methods=['GET', 'POST'])
 def loginGuest():
-	if request.method == 'POST':
-		session['username'] = "guest"
-		return redirect(url_for('main'))
-	return render_template('form.html')
+	session['username'] = "guest"
+	return redirect(url_for('main'))
 """
 @app.route('/fail/<errorcode>')
 def fail():
