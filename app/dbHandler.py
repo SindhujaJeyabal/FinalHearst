@@ -73,16 +73,19 @@ def queryClassLogin(tuple1):
 
 def queryStudentLogin(tuple1):
 	#table loginclass (classname text not null,login text not null, passw text, mappedteacher text)
-	conn = sqlite3.connect("dbase/hearstdata.db")
+	conn = sqlite3.connect("app/dbase/hearstdata.db")
 	c = conn.cursor()
-	tup=('Student',myname)
-	query='select distinct mappedteacher from loginclass where login =? and passw = ?'
-	c.execute(query, tuple1)
+	login1,pass1=tuple1
+	query=('select mappedteacher from loginclass where login =? and passw = ?',tuple1)
+	c.execute(query)
+	#c.execute(query, tuple1)
+	#results = [dict(tname=tuple1[0]) for row1 in c.fetchall()]
 	results = [dict(tname=tuple1[0]) for row1 in c.fetchall()]
+
 	tname1=results[0]['tname']
+	print "teachers name ======", results
 	result={'teachername': tname1, 'liststuds': []}
 	result['liststuds']=queryStudentForTeachers(tname1)
-	#results = [dict(myname=row[0], fname=row[1], srcname=row[2]) for row in c.fetchall()]
 	conn.close()
 	return result
 

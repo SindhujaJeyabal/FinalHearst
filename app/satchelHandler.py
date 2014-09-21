@@ -52,7 +52,9 @@ def getClass(tup1):
 def getStudentLogin(tup1):
 	try: 
 		listall={}
+		print "in getstudent login", tup1
 		listall=dbHandler.queryStudentLogin(tup1)
+		#	result={'teachername': tname1, 'liststuds': []}
 		return listall
 	except Exception as e:
-		return e
+		print e
