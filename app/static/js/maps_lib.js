@@ -390,6 +390,7 @@ var MapsLib = {
           results.append(template);
         }
       };
+      $("#resultlist").show();
       // $( "#view_mode_shape" ).show();
     };
   },
