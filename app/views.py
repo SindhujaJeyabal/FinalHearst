@@ -74,11 +74,11 @@ def loginGuest():
 		session['username'] = "guest"
 		return redirect(url_for('main'))
 	return render_template('form.html')
-
+"""
 @app.route('/fail/<errorcode>')
 def fail():
 	return render_template('fail.html',fail=errorcode)
-
+"""
 @app.route('/homepage.html')
 def main():
 	return render_template('homepage.html', name=session['username'])
@@ -188,4 +188,16 @@ def studentRender(studlogin):
 		return redirect(url_for('fail'))
 	return render_template('teacherform.html')
 
+@app.route('/classadmin')
+def classAdminRender():
+	if 'teachername' in session:
+		cl1=session['teachername']
+		studlist=dbHandler.queryStudentForTeachers(cl1)
+		coursewrok=dbHandler.queryCoursework(cl1)
+		return render_template('classadmin.html', student_list = studlist, coursewrok = coursewrok)
+	else:
+		return redirect(url_for('fail'))	
 
+@app.route('/fail')
+def fail():
+	return render_template('fail.html')
