@@ -33,6 +33,15 @@ def querySatchelForStudent(sname):
 	except Exception as e:
 		return e
 
+def queryCourseworkForStudent(sname):
+	try:
+		listall=[]
+		listall=dbHandler.queryCourseworkByStudent(sname)
+		print len(listall), listall
+		return listall
+	except Exception as e:
+		return e
+
 def queryAllArtifacts(tribeid):
 	try:
 		listall=[]
