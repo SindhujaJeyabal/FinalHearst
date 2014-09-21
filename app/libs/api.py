@@ -107,7 +107,10 @@ def get_artifacts_category_for_tribe(tribe_name):
 	r = Payload(result)
 	#print "Total number of artifcats:", len(r.response['docs'])
 	artifact_tribe = [item for item in r.response['docs'] if (("objname_s" in item.keys()) and ("objdescr_s" in item.keys()) and ("objfilecode_ss" in item.keys()) and ("blob_ss" in item.keys())) ]
-	category_tribe = [item["objfilecode_ss"] for item in artifact_tribe]
+	categ_array = [item["objfilecode_ss"] for item in artifact_tribe]
+	category_tribe = list(set([item for sublist in categ_array for item in sublist]))
+
+	#category_tribe = list(set([item["objfilecode_ss"] for item in artifact_tribe]))
 	#print "After removing, Num artifacts", len(new_list)
 	return artifact_tribe, category_tribe
 

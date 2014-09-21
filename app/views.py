@@ -52,15 +52,29 @@ def queryAllArtifactsForTribe(tribename):
 		return "No tribe selected"
 	print "view: getting artifacts for tribe: ", tribename
 	artifact_tribes, category_tribes = api.get_artifacts_category_for_tribe(tribename)
-	return render_template('artifacts.html',artifact_list=artifact_tribes, category_list=category_tribes)
+	print type(artifact_tribes), len(artifact_tribes), type(artifact_tribes[0])
+	print type(category_tribes), len(category_tribes), type(category_tribes[0])
+	
+	categ_arts = dict()
+	link_categ = list()
+	for categ in category_tribes:
+		categ_arts[categ] = [arty for arty in artifact_tribes if categ in arty['objfilecode_ss']]
+		categ_copy = categ[:]
+		categ_copy=categ_copy.replace(" ", "ZZZZZ")
+		link_categ.append(categ_copy)
+		print "views ", len(categ_arts[categ]),categ,"                ----------                        ",categ_copy
+
+	#print categ_arts
+	return render_template('artifacts.html',artifact_list=categ_arts, category_list=category_tribes, tribe_name = tribename, link_categlist=link_categ)
 
 @app.route('/artifact-category.html/<tribename>/<categoryname>')
 def queryAllArtifactsForCategoryinTribe(tribename,categoryname) :
 	# show the user profile for that user
-	if(tribename!=""):
+	if(tribename==""):
 		return "No tribe selected"
-	artifacts_category = api.get_artifacts_tribe_category(tribename, categoryname)
-	return render_template('artifact-category.html',artifact_list=artifacts_category)
+	newCateg=categoryname.replace("ZZZZZ", " ")
+	artifacts_category = api.get_artifacts_tribe_category(tribename, newCateg)
+	return render_template('artifact-category.html',artifact_list=artifacts_category, categ_name = categoryname)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
