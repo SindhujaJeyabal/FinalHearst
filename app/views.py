@@ -22,6 +22,7 @@ def index():
 		cl1= request.form['uname']
 		pw1 = request.form['pword']
 		tup1=('teacher',cl1,pw1)
+		session['username']=cl1
 
 		# TODO : Authentication!!!
 		#l1=satchelHandler.authTeacher(tup1)
@@ -99,7 +100,7 @@ def login():
 
 def loginGuest():
 	if request.method == 'POST':
-		session['username'] = request.form['username']
+		session['username'] = "guest"
 		return redirect(url_for('main'))
 	return render_template('form.html')
 

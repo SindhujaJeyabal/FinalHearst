@@ -149,7 +149,7 @@ var MapsLib = {
           <div class='span12'>\
             <strong>" + total[row][0] + "</strong>\
             <br />\
-            <a>" + n[l] + "\
+            <a style='cursor: pointer' href='/artifacts.html/" + n[l] + "'>" + n[l] + "\
           </a></div>\
         </div>";
         results_shape.append(template);
