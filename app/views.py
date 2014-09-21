@@ -33,7 +33,7 @@ def login():
 	if request.method == 'POST':
 		session['username'] = request.form['username']
 		return redirect(url_for('main'))
-	return render_template('form.html')
+	return render_template('landingpage.html')
 
 def loginGuest():
 	if request.method == 'POST':
