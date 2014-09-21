@@ -111,6 +111,15 @@ def queryCoursework(teacher):
 	conn.close()
 	return results
 
+def updateCoursework(teacher, coursework):
+	conn = sqlite3.connect("app/dbase/hearstdata.db")
+	c = conn.cursor()
+	tup=(coursework,teacher)
+	c.execute('update loginclass set classname = ? where mappedteacher = ?', tup)
+	conn.commit()
+	conn.close()
+	return
+
 def addToSatchel(tup):
 	try:
 		conn = sqlite3.connect("app/dbase/hearstdata.db")

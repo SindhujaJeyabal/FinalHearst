@@ -77,6 +77,11 @@ p {
 		width: 1.6em; 
 	}
 
+#artifacts-link, #artifacts-link:hover {
+	cursor: default !important;
+	color: #aaaaaa !important;
+}
+
 .btn-satchel {
 	border: 1px solid white;
 	padding: 12px 15px !important;

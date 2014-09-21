@@ -34,20 +34,21 @@
 	        	<div class="navbar-collapse collapse">
 	          		<ul class="nav navbar-nav navbar-right">
 				        <li class="active">
-				        	<a href="homepage.html">
+				        	<a id="homepage-link" href="homepage.html">
 				        		<span class="circle-number">1</span> Select a Tribe
 				        	</a>
 				        </li>
-				        <li>
-				        	<a href="#">
+<!-- 				        <li>
+				        	<a id="artifacts-link">
 				        		<span class="circle-number">2</span> Choose Artifacts
 				        	</a>
-				        </li>
+				        </li> -->
 				        <li class="nav-satchel">
 			            	<a href="satchel.html" class="btn-satchel">
 				            	<span class="glyphicon glyphicon-briefcase"></span>&nbsp;&nbsp;My Satchel
 				            </a>
 				        </li>
+				        <li><a href="/logout" class="logout">Log Out</a></li>
 	          		</ul>
 	        	</div>
 	      	</div>
@@ -94,6 +95,11 @@
 						  <i class='glyphicon glyphicon-search'></i>
 						  Search with Shapes
 						</a>
+						&nbsp;&nbsp;
+						<a class='btn btn-default' id='reset' href='#'>
+						  <i class='glyphicon glyphicon-repeat'></i>
+						  Reset
+						</a>
 
 		    			<hr/>
 
@@ -134,9 +140,7 @@
 
 						<hr/>
 
-						<br/>
-
-<!-- 						<label>Select a Template:</label>
+						<!-- <label>Select a Template:</label>
 						<select id="style">
 							<option value=""></option>
 							<option value="3">BecomeADinosaur Template</option>

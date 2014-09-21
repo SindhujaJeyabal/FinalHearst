@@ -86,6 +86,31 @@ def get_all_artifacts(tribe_name):
 	print type(artifact_tribe), type(artifact_tribe[0])
 	return artifact_tribe
 
+def get_artifacts_category_for_tribe(tribe_name):
+	url = "https://apis.berkeley.edu/hearst_museum/select"
+	values = {'q' : 'objassoccult_txt:' + tribe_name,
+	            'rows' : '44800',
+	            'wt' : 'json',
+	            'indent': 'on',
+	            'fl' : 'id,objname_s,objdescr_s,objfilecode_ss,blob_ss'}
+
+	headers = { 'app_id' : '8dc4e11c',
+	            'app_key': '4aa1d8d78752ef675e607187c4663b17',
+	            'User-Agent': 'Mozilla 5.10',
+	            'Accept-Charset':'utf-8'}
+
+	data = urllib.urlencode(values)
+	url = url + '?' + data
+	req = urllib2.Request(url, None, headers)
+
+	result = urllib2.urlopen(req).read()
+	r = Payload(result)
+	#print "Total number of artifcats:", len(r.response['docs'])
+	artifact_tribe = [item for item in r.response['docs'] if (("objname_s" in item.keys()) and ("objdescr_s" in item.keys()) and ("objfilecode_ss" in item.keys()) and ("blob_ss" in item.keys())) ]
+	category_tribe = [item["objfilecode_ss"] for item in artifact_tribe]
+	#print "After removing, Num artifacts", len(new_list)
+	return artifact_tribe, category_tribe
+
 def getArtifactById(objid):
 	url = "https://apis.berkeley.edu/hearst_museum/select"
 	values = {'q' : 'id:' + objid,

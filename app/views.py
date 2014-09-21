@@ -51,8 +51,8 @@ def queryAllArtifactsForTribe(tribename):
 	if(tribename==""):
 		return "No tribe selected"
 	print "view: getting artifacts for tribe: ", tribename
-	artifact_tribes = api.get_all_artifacts(tribename)
-	return render_template('artifacts.html',artifact_list=artifact_tribes)
+	artifact_tribes, category_tribes = api.get_artifacts_category_for_tribe(tribename)
+	return render_template('artifacts.html',artifact_list=artifact_tribes, category_list=category_tribes)
 
 @app.route('/artifact-category.html/<tribename>/<categoryname>')
 def queryAllArtifactsForCategoryinTribe(tribename,categoryname) :
