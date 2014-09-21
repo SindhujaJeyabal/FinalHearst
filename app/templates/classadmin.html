@@ -110,7 +110,7 @@
 							    <div class="container satchel-row">
 							   		<div class="row">
 										<div class="col-md-3 col-xs-3">
-											<a href="/viewSatchel/{{student.studname}}" data-toggle="modal" data-target="#artifact-item-1" class="student_briefcase" title="View Satchel">
+											<a href="/viewSatchel/{{student.studname}}" class="student_briefcase" title="View Satchel">
 												<span class="glyphicon glyphicon-briefcase mod_student"></span>
 												&nbsp;
 												{{student.studname}}
@@ -512,13 +512,13 @@
 		        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 		        <h4 class="modal-title" id="student-add-title">Add A New Student</h4>
 		      </div>
-			  <form>
+			  <form method="post" id='test_student_idddd'>
 			      <div class="modal-body">
 			        <label>Type in the new student's name:&nbsp;<input type="text" value="" id="student-added" name="student-added"></label>
 			      </div>
 			      <div class="modal-footer">
 			        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-			        <button type="button" class="btn btn-primary btn-success" id="student-add-save">Add the student</button>
+			        <input class="btn btn-primary btn-success" id="student-add-save" value="Add the student" type="submit">
 			      </div>
 			  </form>
 		    </div>

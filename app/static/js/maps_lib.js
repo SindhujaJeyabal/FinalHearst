@@ -21,7 +21,7 @@ var MapsLib = {
 
   //the encrypted Table ID of your Fusion Table (found under File => About)
   //NOTE: numeric IDs will be deprecated soon
-  fusionTableId:      "1Fz3AERVhTUh0FcluxTIF2aoyJHgAeuXd2VOejrqr",
+  fusionTableId:      "14kyH6CXKiK7nffxHlfANpg_0hZ2F8Bo5iLPPFzhy",
 
   //*New Fusion Tables Requirement* API key. found at https://code.google.com/apis/console/
   //*Important* this key is for demonstration purposes. please register your own.
@@ -39,7 +39,7 @@ var MapsLib = {
 
   searchRadius:       805,            //in meters ~ 1/2 mile
   defaultZoom:        6,             //zoom level when map is loaded (bigger is more zoomed in)
-  addrMarkerImage:    'images/blue-pushpin.png',
+  addrMarkerImage:    '/static/images/blue-pushpin.png',
   currentPinpoint:    null,
 
   initialize: function() {
@@ -111,6 +111,7 @@ var MapsLib = {
     console.log("initialize");
     $("#view_mode").hide();
     $("#view_mode_shape").hide();
+    $("#result-instructions").hide();
 
     
     //-----custom initializers-------
@@ -143,14 +144,15 @@ var MapsLib = {
     var results_shape = $("#resultlist_shape");
     results_shape.hide().empty();
     for (var row in total) {
-      for (var l in n=total[row][1].split("; ")) {
+      console.log(total)
+      for (var l in n=total[row][1].split(", ")) {
+        console.log(n[l])
         template = "\
-        <div class='row-fluid item-list'>\
-          <div class='span12'>\
-            <strong>" + total[row][0] + "</strong>\
-            <br />\
-            <a style='cursor: pointer' href='/artifacts.html/" + n[l] + "'>" + n[l] + "\
-          </a></div>\
+        <div class='row item-list'>\
+          <div class='col-md-12'>\
+            <a class='tribe-result' style='cursor: pointer' href='/artifacts.html/" + n[l] + "'>" + n[l] + "</a>\
+            <br/>Artifacts Found At: " + total[row][0] + "\
+            </div>\
         </div>";
         results_shape.append(template);
       }
@@ -379,19 +381,17 @@ var MapsLib = {
     }
     else {
       for (var row in data) {
-        for (var l in n=data[row][1].split("; ")) {
+        for (var l in n=data[row][1].split(", ")) {
           template = "\
           <div class='row item-list'>\
             <div class='col-md-12'>\
-              <strong>" + data[row][0] + "</strong>\
-              <br />\
-              <a style='cursor: pointer' href='/artifacts.html/" + n[l] + "'>" + n[l] + "\
-            </a></div>\
+              <a class='tribe-result' style='cursor: pointer' href='/artifacts.html/" + n[l] + "'>" + n[l] + "</a>\
+              <br/>Artifacts Found At: " + data[row][0] + "\
+              </div>\
           </div>";
           results.append(template);
         }
       };
-      // $( "#view_mode_shape" ).show();
     };
   },
 

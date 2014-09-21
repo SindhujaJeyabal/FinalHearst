@@ -34,7 +34,7 @@ def index():
 			#studlist=satchelHandler.queryStudentForTeachers(cl1)
 			studlist=dbHandler.queryStudentForTeachers(cl1)
 			coursewrok=dbHandler.queryCoursework(cl1)
-			return render_template('classadmin.html', student_list = studlist, coursewrok = coursewrok)
+			return redirect(url_for('classAdminRender'))
 		return redirect(url_for('main'))	
 	#return redirect(url_for('login'))
 	return render_template('landingpage.html')
@@ -72,9 +72,14 @@ def queryAllArtifactsForCategoryinTribe(tribename,categoryname) :
 	# show the user profile for that user
 	if(tribename==""):
 		return "No tribe selected"
+<<<<<<< HEAD
 	newCateg=categoryname.replace("ZZZZZ", " ")
 	artifacts_category = api.get_artifacts_tribe_category(tribename, newCateg)
 	return render_template('artifact-category.html',artifact_list=artifacts_category, categ_name = categoryname)
+=======
+	artifacts_category = api.get_artifacts_tribe_category(tribename, categoryname)
+	return render_template('artifact-category.html',artifact_list=artifacts_category,categoryname=categoryname,tribename=tribename)
+>>>>>>> 124f853405f08627269042d902ce2af3b2090e45
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -83,16 +88,15 @@ def login():
 		return redirect(url_for('main'))
 	return render_template('landingpage.html')
 
+@app.route('/guestlogin', methods=['GET', 'POST'])
 def loginGuest():
-	if request.method == 'POST':
-		session['username'] = "guest"
-		return redirect(url_for('main'))
-	return render_template('form.html')
-
+	session['username'] = "guest"
+	return redirect(url_for('main'))
+"""
 @app.route('/fail/<errorcode>')
 def fail():
 	return render_template('fail.html',fail=errorcode)
-
+"""
 @app.route('/homepage.html')
 def main():
 	return render_template('homepage.html', name=session['username'])
@@ -101,6 +105,7 @@ def main():
 @app.route('/satchel.html')
 def satrender():
     satchelContents = satchelHandler.querySatchel()
+    coursework = satchelHandler.queryCourseworkForStudent(session['username'])
     count = len(satchelContents)
     objectList = []
     for item in satchelContents:
@@ -109,7 +114,7 @@ def satrender():
         obj = api.getArtifactById(item['obj'])
         print type(obj[0])
         objectList.append(obj[0])
-    return render_template('satchel.html', name=session['username'], count=count, artifactList=objectList)
+    return render_template('satchel.html', name=session['username'], count=count, artifactList=objectList, coursework=coursework)
 
 @app.route('/user/<username>')
 def show_user_profile(username):
@@ -202,4 +207,27 @@ def studentRender(studlogin):
 		return redirect(url_for('fail'))
 	return render_template('teacherform.html')
 
+@app.route('/classadmin', methods=['GET', 'POST'])
+def classAdminRender():
+	if 'teachername' in session:
+		cl1=session['teachername']
 
+		if request.method == 'POST':
+			coursework= request.form.get('coursework')
+			added_student = request.form.get('student-added')
+			if coursework != None:
+				print 'coursework:'+coursework
+				dbHandler.updateCoursework(cl1, coursework)
+			elif added_student != None:
+				dbHandler.addStudentToClass(cl1, added_student)
+
+		student_list=dbHandler.queryStudentForTeachers(cl1)
+		coursewrok=dbHandler.queryCoursework(cl1)
+
+		return render_template('classadmin.html', student_list = student_list, coursewrok = coursewrok)
+	else:
+		return redirect(url_for('fail'))	
+
+@app.route('/fail')
+def fail():
+	return render_template('fail.html')

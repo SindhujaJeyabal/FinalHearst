@@ -24,6 +24,18 @@ def authTeachers(tup2):
 	else:
 		return False
 
+def addStudentToClass(teacher, student):
+	coursewrok=queryCoursework(teacher)
+
+	conn = sqlite3.connect("app/dbase/hearstdata.db")
+	c = conn.cursor()
+	tup=(student, 'Student', coursewrok['classdesc'], teacher)
+	c.execute('insert into usermap values (?,?,?,?)', tup)
+	conn.commit()
+	conn.close()
+	return
+
+
 def queryStudentForTeachers(myname):
 	conn = sqlite3.connect("app/dbase/hearstdata.db")
 	c = conn.cursor()
@@ -108,6 +120,23 @@ def queryCoursework(teacher):
 	reulst_list = c.fetchall()
 	if len(reulst_list) >=1 :
 		results = {'classdesc' : reulst_list[0][0]} 
+	conn.close()
+	return results
+
+def queryCourseworkByStudent(student):
+	conn = sqlite3.connect("app/dbase/hearstdata.db")
+	c = conn.cursor()
+
+	# query mappedteacher first
+	tup1=('Student',student)
+	c.execute('select mappedteacher from usermap where role =? and uname = ?', tup1)
+	mappedteacher = c.fetchone()[0]
+
+	# query coursework from the teacher
+	tup2=('student', mappedteacher)
+	c.execute('select distinct classname from loginclass where role =? and mappedteacher = ?', tup2)
+	results = {'classdesc' : c.fetchone()[0]} 
+
 	conn.close()
 	return results
 
