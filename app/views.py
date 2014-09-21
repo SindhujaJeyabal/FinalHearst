@@ -26,8 +26,8 @@ def debug():
 	#return "Static URL"+url_for('static', filename='css/bootstrap.min.css')
 	return app.config['DATABASE']+apis.printme()
 
-@app.route('/artifacts.html')
-def routeArt():
+@app.route('/artifacts.html/<tribename>')
+def routeArt(tribename):
 	#return "Static URL"+url_for('static', filename='css/bootstrap.min.css')
 	return render_template('artifacts.html')
 @app.route('/login', methods=['GET', 'POST'])
@@ -86,7 +86,7 @@ def queryAll():
 		str1=str1+myelement['teachername']
 	return str1
 
-@app.route('/artifact-category.html/<tribeid>')
+"""@app.route('/artifact-category.html/<tribeid>')
 def queryAllArtifacts():
 	# show the user profile for that user
 	if(tribeid!=""):
@@ -95,14 +95,13 @@ def queryAllArtifacts():
 	str1="wow"
 	for myelement in mylist:
 		str1=str1+myelement['teachername']
-	return str1
+	return str1"""
 
 
-@app.route('/artifact-category.html')
-def queryAll1Artifacts():
-	artifact_list=api.get_all_artifacts('yurok')
-	artifact_list
-	count = len(api.get_all_artifacts('yurok'))
+@app.route('/artifact-category.html/<tribename>')
+def queryAll1Artifacts(tribename):
+	artifact_list=api.get_all_artifacts(tribename)
+	count = len(artifact_list)
 	# show the user profile for that user
 	return render_template('artifact-category.html',artifact_list=artifact_list,count=count)
 
