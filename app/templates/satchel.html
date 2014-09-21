@@ -78,10 +78,7 @@
 							<a href="#satchel_artifacts" role="tab" data-toggle="tab">View Artifacts</a>
 						</li>
 						<li>
-							<a href="#satchel_tribe" role="tab" data-toggle="tab">View By Tribe</a>
-						</li>
-						<li>
-							<a href="#satchel_region" role="tab" data-toggle="tab">View By Region</a>
+							<a href="#satchel_coursework" role="tab" data-toggle="tab">View Coursework</a>
 						</li>
 					</ul>
 	  			</div>
@@ -136,9 +133,10 @@
 					</div>
 				</div>						
 
-				<div class="tab-pane" id="satchel_tribe">
+				<div class="tab-pane" id="satchel_coursework">
 					<div class="container">
-						<div class="row">
+						{{coursework.classdesc}}
+						<!-- <div class="row">
 							<div class="container satchel-row">
 								<div class="row">
 									<div class="col-md-4 col-xs-4">
@@ -152,30 +150,9 @@
 									</div>
 								</div>
 							</div>
-						</div>
+						</div> -->
 					</div>
 				</div>
-
-				<div class="tab-pane" id="satchel_region">
-					<div class="container">
-						<div class="row">
-							<div class="container satchel-row">
-								<div class="row">
-									<div class="col-md-4 col-xs-4">
-										<h4>Artifact Photograph</h4>
-									</div>
-									<div class="col-md-5 col-xs-5">
-										<h4>Artifact Description</h4>
-									</div>
-									<div class="col-md-3 col-xs-3">
-										<h4>My Thoughts</h4>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
 			</div>
   		</div>
 
@@ -191,8 +168,7 @@
   			$(this).tab('show')
 			})
 			$('#myTab a[href="#satchel_artifacts"]').tab('show')
-			$('#myTab a[href="#satchel_tribe"]').tab('show')
-			$('#myTab a[href="#satchel_region"]').tab('show')
+			$('#myTab a[href="#satchel_coursework"]').tab('show')
 		</script>
 	</body>
 </html>

@@ -69,11 +69,10 @@ def login():
 		return redirect(url_for('main'))
 	return render_template('landingpage.html')
 
+@app.route('/guestlogin', methods=['GET', 'POST'])
 def loginGuest():
-	if request.method == 'POST':
-		session['username'] = "guest"
-		return redirect(url_for('main'))
-	return render_template('form.html')
+	session['username'] = "guest"
+	return redirect(url_for('main'))
 """
 @app.route('/fail/<errorcode>')
 def fail():
@@ -87,6 +86,7 @@ def main():
 @app.route('/satchel.html')
 def satrender():
     satchelContents = satchelHandler.querySatchel()
+    coursework = satchelHandler.queryCourseworkForStudent(session['username'])
     count = len(satchelContents)
     objectList = []
     for item in satchelContents:
@@ -95,7 +95,7 @@ def satrender():
         obj = api.getArtifactById(item['obj'])
         print type(obj[0])
         objectList.append(obj[0])
-    return render_template('satchel.html', name=session['username'], count=count, artifactList=objectList)
+    return render_template('satchel.html', name=session['username'], count=count, artifactList=objectList, coursework=coursework)
 
 @app.route('/user/<username>')
 def show_user_profile(username):

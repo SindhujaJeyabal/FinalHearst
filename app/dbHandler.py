@@ -111,6 +111,23 @@ def queryCoursework(teacher):
 	conn.close()
 	return results
 
+def queryCourseworkByStudent(student):
+	conn = sqlite3.connect("app/dbase/hearstdata.db")
+	c = conn.cursor()
+
+	# query mappedteacher first
+	tup1=('Student',student)
+	c.execute('select mappedteacher from usermap where role =? and uname = ?', tup1)
+	mappedteacher = c.fetchone()[0]
+
+	# query coursework from the teacher
+	tup2=('student', mappedteacher)
+	c.execute('select distinct classname from loginclass where role =? and mappedteacher = ?', tup2)
+	results = {'classdesc' : c.fetchone()[0]} 
+
+	conn.close()
+	return results
+
 def updateCoursework(teacher, coursework):
 	conn = sqlite3.connect("app/dbase/hearstdata.db")
 	c = conn.cursor()
