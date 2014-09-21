@@ -34,7 +34,7 @@ def index():
 			#studlist=satchelHandler.queryStudentForTeachers(cl1)
 			studlist=dbHandler.queryStudentForTeachers(cl1)
 			coursewrok=dbHandler.queryCoursework(cl1)
-			return render_template('classadmin.html', student_list = studlist, coursewrok = coursewrok)
+			return redirect(url_for('classAdminRender'))
 		return redirect(url_for('main'))	
 	#return redirect(url_for('login'))
 	return render_template('landingpage.html')
@@ -188,13 +188,18 @@ def studentRender(studlogin):
 		return redirect(url_for('fail'))
 	return render_template('teacherform.html')
 
-@app.route('/classadmin')
+@app.route('/classadmin', methods=['GET', 'POST'])
 def classAdminRender():
 	if 'teachername' in session:
 		cl1=session['teachername']
-		studlist=dbHandler.queryStudentForTeachers(cl1)
+		if request.method == 'POST':
+			coursework= request.form['coursework']
+			dbHandler.updateCoursework(cl1, coursework)
+
+		student_list=dbHandler.queryStudentForTeachers(cl1)
 		coursewrok=dbHandler.queryCoursework(cl1)
-		return render_template('classadmin.html', student_list = studlist, coursewrok = coursewrok)
+
+		return render_template('classadmin.html', student_list = student_list, coursewrok = coursewrok)
 	else:
 		return redirect(url_for('fail'))	
 
