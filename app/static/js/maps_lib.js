@@ -21,7 +21,7 @@ var MapsLib = {
 
   //the encrypted Table ID of your Fusion Table (found under File => About)
   //NOTE: numeric IDs will be deprecated soon
-  fusionTableId:      "1Fz3AERVhTUh0FcluxTIF2aoyJHgAeuXd2VOejrqr",
+  fusionTableId:      "14kyH6CXKiK7nffxHlfANpg_0hZ2F8Bo5iLPPFzhy",
 
   //*New Fusion Tables Requirement* API key. found at https://code.google.com/apis/console/
   //*Important* this key is for demonstration purposes. please register your own.
@@ -148,10 +148,9 @@ var MapsLib = {
         template = "\
         <div class='row-fluid item-list'>\
           <div class='span12'>\
-            <strong>" + total[row][0] + "</strong>\
-            <br />\
-            <a style='cursor: pointer' href='/artifacts.html/" + n[l] + "'>" + n[l] + "\
-          </a></div>\
+            <a class='tribe-result' style='cursor: pointer' href='/artifacts.html/" + n[l] + "'>" + n[l] + "</a>\
+            <br/><strong>Artifacts Found At:</strong> " + total[row][0] + "\
+            </div>\
         </div>";
         results_shape.append(template);
       }
