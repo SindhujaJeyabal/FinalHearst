@@ -135,17 +135,10 @@
 						<br/><br/>
 
 						<a class="btn btn-primary" id="view_mode">
-							Search Results
+							Show Address Results
 						</a>
 
 						<hr/>
-
-						<!-- <label>Select a Template:</label>
-						<select id="style">
-							<option value=""></option>
-							<option value="3">BecomeADinosaur Template</option>
-							<option value="4">GrassIsGreener Template</option>
-						</select> -->
 
 					</div> <!-- end #search-functions -->
 
@@ -164,6 +157,13 @@
 					  <i class='glyphicon glyphicon-repeat'></i>
 					  Back to Search
 					</a><br/><br/>
+
+					<div id="result-instructions">
+						<h1>Select a Tribe</h1>
+						<hr/>
+						<p>From the results below, select a tribe name to go to the next page to see its artifacts.</p>
+						<br/>
+					</div>
 					<div id="resultlist_shape"></div>
 					<div id="resultlist"></div>
 	    		</div>
@@ -245,6 +245,7 @@
 
 			  $( "#view_mode_shape" ).click(function() {
 				  $("#search-functions").fadeOut();
+			  	  $("#result-instructions").fadeIn();
 				  $("#resultlist_shape").fadeIn();
 				  $("#back-search").fadeIn();
 				  $("#view_mode_shape").fadeOut();
@@ -253,6 +254,7 @@
 
 			  $( "#view_mode" ).click(function() {
 				  $("#search-functions").fadeOut();
+			  	  $("#result-instructions").fadeIn();
 				  $("#resultlist").fadeIn();
 				  $("#back-search").fadeIn();
 				  $("#view_mode").fadeOut();
