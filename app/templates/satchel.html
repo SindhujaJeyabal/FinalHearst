@@ -61,7 +61,7 @@
 						<h3>Examine Your Satchel</h3>
 					</div>
 					<div class="col-md-4 col-xs-4">
-						<h4 class="text-right">X Tribes, N Objects</h4>
+						<h4 class="text-right">{{count}} Objects</h4>
 					</div>
 	  			</div>
 	  		</div>
@@ -105,14 +105,17 @@
 							</div>
 						</div>
 
+						{% for item in artifactList %}
+
 						<div class="row">
 						    <div class="container satchel-row">
 						   		<div class="row">
 									<div class="col-md-4 col-xs-4">
-										<img src="http://img.ehowcdn.com/article-new-thumbnail/ds-photo/getty/article/76/127/200229930-001_XS.jpg" class="img-responsive" alt="">
+										{% set source1 = "https://dev.cspace.berkeley.edu/pahma_project/imageserver/blobs/"+item["blob_ss"][0]+"/derivatives/Medium/content" %}
+										<img src={{source1}} class="img-responsive" alt="">
 									</div>
 									<div class="col-md-5 col-xs-5">
-										<p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+										<p>{{item['objdescr_s']}}</p>
 									</div>
 									<div class="col-md-3 col-xs-3">
 										<form role="form">
@@ -125,45 +128,7 @@
 							</div>
 						</div>
 
-						<div class="row">
-						    <div class="container satchel-row">
-						   		<div class="row">
-									<div class="col-md-4 col-xs-4">
-										<img src="http://img.ehowcdn.com/article-new-thumbnail/ds-photo/getty/article/76/127/200229930-001_XS.jpg" class="img-responsive" alt="">
-									</div>
-									<div class="col-md-5 col-xs-5">
-										<p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
-									</div>
-									<div class="col-md-3 col-xs-3">
-										<form role="form">
-											<div class="form-group">
-												<textarea class="form-control"></textarea>
-											</div>
-										</form>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="row">
-						    <div class="container satchel-row">
-						   		<div class="row">
-									<div class="col-md-4 col-xs-4">
-										<img src="http://img.ehowcdn.com/article-new-thumbnail/ds-photo/getty/article/76/127/200229930-001_XS.jpg" class="img-responsive" alt="">
-									</div>
-									<div class="col-md-5 col-xs-5">
-										<p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
-									</div>
-									<div class="col-md-3 col-xs-3">
-										<form role="form">
-											<div class="form-group">
-												<textarea class="form-control"></textarea>
-											</div>
-										</form>
-									</div>
-								</div>
-							</div>
-						</div>
+						{% endfor %}					
 
 					</div>
 				</div>						
