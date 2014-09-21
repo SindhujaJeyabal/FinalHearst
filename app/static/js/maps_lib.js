@@ -146,11 +146,12 @@ var MapsLib = {
     for (var row in total) {
       console.log(total)
       for (var l in n=total[row][1].split(", ")) {
+        nospace = n[l].replace(" ", "ZZZZZ");
         console.log(n[l])
         template = "\
         <div class='row item-list'>\
           <div class='col-md-12'>\
-            <a class='tribe-result' style='cursor: pointer' href='/artifacts.html/" + n[l] + "'>" + n[l] + "</a>\
+            <a class='tribe-result' style='cursor: pointer' href='/artifacts.html/" + nospace + "'>" + n[l] + "</a>\
             <br/>Artifacts Found At: " + total[row][0] + "\
             </div>\
         </div>";
@@ -382,10 +383,11 @@ var MapsLib = {
     else {
       for (var row in data) {
         for (var l in n=data[row][1].split(", ")) {
+          nospace = n[l].replace(" ", "ZZZZZ");
           template = "\
           <div class='row item-list'>\
             <div class='col-md-12'>\
-              <a class='tribe-result' style='cursor: pointer' href='/artifacts.html/" + n[l] + "'>" + n[l] + "</a>\
+              <a class='tribe-result' style='cursor: pointer' href='/artifacts.html/" + nospace + "'>" + n[l] + "</a>\
               <br/>Artifacts Found At: " + data[row][0] + "\
               </div>\
           </div>";
