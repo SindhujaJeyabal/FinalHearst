@@ -146,10 +146,10 @@ var MapsLib = {
     for (var row in total) {
       for (var l in n=total[row][1].split("; ")) {
         template = "\
-        <div class='row-fluid item-list'>\
-          <div class='span12'>\
+        <div class='row item-list'>\
+          <div class='col-md-12'>\
             <a class='tribe-result' style='cursor: pointer' href='/artifacts.html/" + n[l] + "'>" + n[l] + "</a>\
-            <br/><strong>Artifacts Found At:</strong> " + total[row][0] + "\
+            <br/>Artifacts Found At: " + total[row][0] + "\
             </div>\
         </div>";
         results_shape.append(template);
@@ -383,10 +383,9 @@ var MapsLib = {
           template = "\
           <div class='row item-list'>\
             <div class='col-md-12'>\
-              <strong>" + data[row][0] + "</strong>\
-              <br />\
-              <a style='cursor: pointer' href='/artifacts.html/" + n[l] + "'>" + n[l] + "\
-            </a></div>\
+              <a class='tribe-result' style='cursor: pointer' href='/artifacts.html/" + n[l] + "'>" + n[l] + "</a>\
+              <br/>Artifacts Found At: " + total[row][0] + "\
+              </div>\
           </div>";
           results.append(template);
         }

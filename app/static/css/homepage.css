@@ -498,5 +498,15 @@ canvas {-ms-touch-action: double-tap-zoom;}
 	margin-bottom: 15px;
 }
 
+.tribe-result {
+	font-size: 20px;
+	color: #CFDD45;
+}
+
+.tribe-result:hover {
+	color: #FFFFFF;
+	text-decoration: none;
+}
+
 
 /*change breakpoint to maxwidth 983*/
