@@ -43,9 +43,22 @@ def debug():
 	return app.config['DATABASE']+apis.printme()
 
 @app.route('/artifacts.html/<tribename>')
-def routeArt(tribename):
-	#return "Static URL"+url_for('static', filename='css/bootstrap.min.css')
-	return render_template('artifacts.html')
+def queryAllArtifactsForTribe(tribename):
+	# show the user profile for that user
+	if(tribename==""):
+		return "No tribe selected"
+	print "view: getting artifacts for tribe: ", tribename
+	artifact_tribes = api.get_all_artifacts(tribename)
+	return render_template('artifacts.html',artifact_list=artifact_tribes)
+
+@app.route('/artifact-category.html/<tribename>/<categoryname>')
+def queryAllArtifactsForCategoryinTribe(tribename,categoryname) :
+	# show the user profile for that user
+	if(tribename!=""):
+		return "No tribe selected"
+	artifacts_category = api.get_artifacts_tribe_category(tribename, categoryname)
+	return render_template('artifact-category.html',artifact_list=artifacts_category)
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
 	if request.method == 'POST':
