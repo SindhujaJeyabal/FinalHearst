@@ -148,10 +148,9 @@ var MapsLib = {
         template = "\
         <div class='row-fluid item-list'>\
           <div class='span12'>\
-            <strong>" + total[row][0] + "</strong>\
-            <br />\
-            <a style='cursor: pointer' href='/artifacts.html/" + n[l] + "'>" + n[l] + "\
-          </a></div>\
+            <a class='tribe-result' style='cursor: pointer' href='/artifacts.html/" + n[l] + "'>" + n[l] + "</a>\
+            <br/><strong>Artifacts Found At:</strong> " + total[row][0] + "\
+            </div>\
         </div>";
         results_shape.append(template);
       }
