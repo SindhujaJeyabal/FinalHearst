@@ -102,6 +102,21 @@ def queryAll():
 		str1=str1+myelement['teachername']
 	return str1
 
+@app.route('/viewSatchel/<studname>')
+def viewSatchelForStudent(studname):
+	# show the user profile for that user
+	mylist=[]
+	satchelContents=satchelHandler.querySatchelForStudent(studname)
+	count = len(satchelContents)
+	objectList = []
+	for item in satchelContents:
+		print "item in satchel",item
+		print "CALLING ARTIFACT LIST"
+		obj = api.getArtifactById(item['obj'])
+		print type(obj[0])
+		objectList.append(obj[0])
+	return render_template('studentssatchel.html', name=studname, count=count, artifactList=objectList)
+
 """@app.route('/artifact-category.html/<tribeid>')
 def queryAllArtifacts():
 	# show the user profile for that user
