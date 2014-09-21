@@ -192,9 +192,15 @@ def studentRender(studlogin):
 def classAdminRender():
 	if 'teachername' in session:
 		cl1=session['teachername']
+
 		if request.method == 'POST':
-			coursework= request.form['coursework']
-			dbHandler.updateCoursework(cl1, coursework)
+			coursework= request.form.get('coursework')
+			added_student = request.form.get('student-added')
+			if coursework != None:
+				print 'coursework:'+coursework
+				dbHandler.updateCoursework(cl1, coursework)
+			elif added_student != None:
+				dbHandler.addStudentToClass(cl1, added_student)
 
 		student_list=dbHandler.queryStudentForTeachers(cl1)
 		coursewrok=dbHandler.queryCoursework(cl1)

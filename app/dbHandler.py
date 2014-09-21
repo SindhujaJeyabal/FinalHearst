@@ -24,6 +24,18 @@ def authTeachers(tup2):
 	else:
 		return False
 
+def addStudentToClass(teacher, student):
+	coursewrok=queryCoursework(teacher)
+
+	conn = sqlite3.connect("app/dbase/hearstdata.db")
+	c = conn.cursor()
+	tup=[(student, 'Student', coursewrok, teacher)]
+	c.execute('insert into usermap values (?,?,?,?)', tup)
+	conn.commit()
+	conn.close()
+	return
+
+
 def queryStudentForTeachers(myname):
 	conn = sqlite3.connect("app/dbase/hearstdata.db")
 	c = conn.cursor()
