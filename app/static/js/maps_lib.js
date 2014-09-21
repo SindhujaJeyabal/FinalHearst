@@ -111,6 +111,7 @@ var MapsLib = {
     console.log("initialize");
     $("#view_mode").hide();
     $("#view_mode_shape").hide();
+    $("#result-instructions").hide();
 
     
     //-----custom initializers-------
