@@ -31,14 +31,27 @@ def index():
 			return render_template('studentform.html',fail="Not Found ... !")
 		else:
 			session['teachername']=cl1
-			#studlist=satchelHandler.queryStudentForTeachers(cl1)
-			studlist=dbHandler.queryStudentForTeachers(cl1)
-			coursewrok=dbHandler.queryCoursework(cl1)
-			return render_template('classadmin.html', student_list = studlist, coursewrok = coursewrok)
+			
+			return redirect(url_for('queryClassadmin'))
 		return redirect(url_for('main'))	
 	#return redirect(url_for('login'))
 	return render_template('landingpage.html')
 
+@app.route('/classadmin', methods=['GET', 'POST'])
+def queryClassadmin():
+	try:
+		teacher = session['teachername']
+	except KeyError:
+		return redirect(url_for('index'))
+
+	if request.method == 'POST':
+		coursework= request.form['coursework']
+		dbHandler.updateCoursework(teacher, coursework)
+
+	student_list=dbHandler.queryStudentForTeachers(teacher)
+	coursewrok=dbHandler.queryCoursework(teacher)
+
+	return render_template('classadmin.html', student_list = student_list, coursewrok = coursewrok)
 
 @app.route('/debug')
 def debug():
