@@ -13,7 +13,7 @@ def queryTeachers(myname):
 	return results
 
 def authTeachers(tup2):
-	conn = sqlite3.connect("dbase/hearstdata.db")
+	conn = sqlite3.connect("app/dbase/hearstdata.db")
 	c = conn.cursor()
 	query='select count(distinct teacher) from loginclass where role = ? and login = ? and password = ?'
 	c.execute('select count(distinct teacher) from loginclass where role = ? and login = ? and password = ?',tup2)
@@ -58,7 +58,7 @@ def queryAll():
 
 def queryClassLogin(tuple1):
 	#table loginclass (classname text not null,login text not null, passw text, mappedteacher text)
-	conn = sqlite3.connect("dbase/hearstdata.db")
+	conn = sqlite3.connect("app/dbase/hearstdata.db")
 	c = conn.cursor()
 	tup=('Student',myname)
 	query='select distinct mappedteacher from loginclass where login =? and passw = ?'
@@ -77,10 +77,11 @@ def queryStudentLogin(tuple1):
 	c = conn.cursor()
 	login1,pass1=tuple1
 	query=('select mappedteacher from loginclass where login =? and passw = ?',tuple1)
-	c.execute(query)
-	#c.execute(query, tuple1)
-	#results = [dict(tname=tuple1[0]) for row1 in c.fetchall()]
-	results = [dict(tname=tuple1[0]) for row1 in c.fetchall()]
+	print "queryyyyy",query
+	c.execute('select mappedteacher from loginclass where login =? and passw = ?',tuple1)
+	#print "--------",c.fetchall()
+		#results = [dict(tname=tuple1[0]) for row1 in c.fetchall()]
+	results = [dict(tname=row1[0]) for row1 in c.fetchall()]
 
 	tname1=results[0]['tname']
 	print "teachers name ======", results

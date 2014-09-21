@@ -132,11 +132,10 @@ def studlogin():
 	return render_template('studentform.html')
 
 @app.route('/studentrender/<studlogin>')
-def studentRender():
+def studentRender(studlogin):
 	if 'teachername' in session:
 		session['username']= studlogin
 		return redirect(url_for('main'))
-
 	else:
 		return redirect(url_for('fail'))
 	return render_template('teacherform.html')
