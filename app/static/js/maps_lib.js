@@ -144,7 +144,9 @@ var MapsLib = {
     var results_shape = $("#resultlist_shape");
     results_shape.hide().empty();
     for (var row in total) {
-      for (var l in n=total[row][1].split("; ")) {
+      console.log(total)
+      for (var l in n=total[row][1].split(", ")) {
+        console.log(n[l])
         template = "\
         <div class='row item-list'>\
           <div class='col-md-12'>\
@@ -379,12 +381,12 @@ var MapsLib = {
     }
     else {
       for (var row in data) {
-        for (var l in n=data[row][1].split("; ")) {
+        for (var l in n=data[row][1].split(", ")) {
           template = "\
           <div class='row item-list'>\
             <div class='col-md-12'>\
               <a class='tribe-result' style='cursor: pointer' href='/artifacts.html/" + n[l] + "'>" + n[l] + "</a>\
-              <br/>Artifacts Found At: " + total[row][0] + "\
+              <br/>Artifacts Found At: " + data[row][0] + "\
               </div>\
           </div>";
           results.append(template);
