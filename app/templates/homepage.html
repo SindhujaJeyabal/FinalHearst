@@ -38,11 +38,11 @@
 				        		<span class="circle-number">1</span> Select a Tribe
 				        	</a>
 				        </li>
-				        <li>
+<!-- 				        <li>
 				        	<a id="artifacts-link">
 				        		<span class="circle-number">2</span> Choose Artifacts
 				        	</a>
-				        </li>
+				        </li> -->
 				        <li class="nav-satchel">
 			            	<a href="satchel.html" class="btn-satchel">
 				            	<span class="glyphicon glyphicon-briefcase"></span>&nbsp;&nbsp;My Satchel
@@ -95,6 +95,11 @@
 						  <i class='glyphicon glyphicon-search'></i>
 						  Search with Shapes
 						</a>
+						&nbsp;&nbsp;
+						<a class='btn btn-default' id='reset' href='#'>
+						  <i class='glyphicon glyphicon-repeat'></i>
+						  Reset
+						</a>
 
 		    			<hr/>
 
@@ -130,19 +135,10 @@
 						<br/><br/>
 
 						<a class="btn btn-primary" id="view_mode">
-							Search Results
+							Show Address Results
 						</a>
 
 						<hr/>
-
-						<br/>
-
-						<!-- <label>Select a Template:</label>
-						<select id="style">
-							<option value=""></option>
-							<option value="3">BecomeADinosaur Template</option>
-							<option value="4">GrassIsGreener Template</option>
-						</select> -->
 
 					</div> <!-- end #search-functions -->
 
@@ -161,6 +157,13 @@
 					  <i class='glyphicon glyphicon-repeat'></i>
 					  Back to Search
 					</a><br/><br/>
+
+					<div id="result-instructions">
+						<h1>Select a Tribe</h1>
+						<hr/>
+						<p>From the results below, select a tribe name to go to the next page to see its artifacts.</p> 
+						<br/>
+					</div>
 					<div id="resultlist_shape"></div>
 					<div id="resultlist"></div>
 	    		</div>
@@ -242,6 +245,7 @@
 
 			  $( "#view_mode_shape" ).click(function() {
 				  $("#search-functions").fadeOut();
+			  	  $("#result-instructions").fadeIn();
 				  $("#resultlist_shape").fadeIn();
 				  $("#back-search").fadeIn();
 				  $("#view_mode_shape").fadeOut();
@@ -250,6 +254,7 @@
 
 			  $( "#view_mode" ).click(function() {
 				  $("#search-functions").fadeOut();
+			  	  $("#result-instructions").fadeIn();
 				  $("#resultlist").fadeIn();
 				  $("#back-search").fadeIn();
 				  $("#view_mode").fadeOut();

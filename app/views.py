@@ -31,27 +31,14 @@ def index():
 			return render_template('studentform.html',fail="Not Found ... !")
 		else:
 			session['teachername']=cl1
-			
-			return redirect(url_for('queryClassadmin'))
+			#studlist=satchelHandler.queryStudentForTeachers(cl1)
+			studlist=dbHandler.queryStudentForTeachers(cl1)
+			coursewrok=dbHandler.queryCoursework(cl1)
+			return render_template('classadmin.html', student_list = studlist, coursewrok = coursewrok)
 		return redirect(url_for('main'))	
 	#return redirect(url_for('login'))
 	return render_template('landingpage.html')
 
-@app.route('/classadmin', methods=['GET', 'POST'])
-def queryClassadmin():
-	try:
-		teacher = session['teachername']
-	except KeyError:
-		return redirect(url_for('index'))
-
-	if request.method == 'POST':
-		coursework= request.form['coursework']
-		dbHandler.updateCoursework(teacher, coursework)
-
-	student_list=dbHandler.queryStudentForTeachers(teacher)
-	coursewrok=dbHandler.queryCoursework(teacher)
-
-	return render_template('classadmin.html', student_list = student_list, coursewrok = coursewrok)
 
 @app.route('/debug')
 def debug():
@@ -64,8 +51,8 @@ def queryAllArtifactsForTribe(tribename):
 	if(tribename==""):
 		return "No tribe selected"
 	print "view: getting artifacts for tribe: ", tribename
-	artifact_tribes = api.get_all_artifacts(tribename)
-	return render_template('artifacts.html',artifact_list=artifact_tribes)
+	artifact_tribes, category_tribes = api.get_artifacts_category_for_tribe(tribename)
+	return render_template('artifacts.html',artifact_list=artifact_tribes, category_list=category_tribes)
 
 @app.route('/artifact-category.html/<tribename>/<categoryname>')
 def queryAllArtifactsForCategoryinTribe(tribename,categoryname) :
@@ -87,11 +74,11 @@ def loginGuest():
 		session['username'] = "guest"
 		return redirect(url_for('main'))
 	return render_template('form.html')
-
+"""
 @app.route('/fail/<errorcode>')
 def fail():
 	return render_template('fail.html',fail=errorcode)
-
+"""
 @app.route('/homepage.html')
 def main():
 	return render_template('homepage.html', name=session['username'])
@@ -202,4 +189,16 @@ def studentRender(studlogin):
 		return redirect(url_for('fail'))
 	return render_template('teacherform.html')
 
+@app.route('/classadmin')
+def classAdminRender():
+	if 'teachername' in session:
+		cl1=session['teachername']
+		studlist=dbHandler.queryStudentForTeachers(cl1)
+		coursewrok=dbHandler.queryCoursework(cl1)
+		return render_template('classadmin.html', student_list = studlist, coursewrok = coursewrok)
+	else:
+		return redirect(url_for('fail'))	
 
+@app.route('/fail')
+def fail():
+	return render_template('fail.html')
