@@ -32,11 +32,13 @@ def index():
 			session['teachername']=cl1
 			#studlist=satchelHandler.queryStudentForTeachers(cl1)
 			studlist=dbHandler.queryStudentForTeachers(cl1)
-			return render_template('classadmin.html', student_list = studlist)
+			coursewrok=dbHandler.queryCoursework(cl1)
+			return render_template('classadmin.html', student_list = studlist, coursewrok = coursewrok)
 		return redirect(url_for('main'))	
 	#return redirect(url_for('login'))
 	return render_template('landingpage.html')
-	
+
+
 @app.route('/debug')
 def debug():
 	#return "Static URL"+url_for('static', filename='css/bootstrap.min.css')

@@ -306,7 +306,7 @@
 										<h4>Modify Your Coursework</h4>
 										<br>
 										<form>
-											<textarea id="coursework"></textarea><br>
+											<textarea id="coursework">{{coursewrok.classdesc}}</textarea><br>
 											<input type="submit" class="btn btn-primary" value="Save Changes">
 										</form>
 									</div>
@@ -573,7 +573,7 @@
 		<script src="http://tinymce.cachefly.net/4.1/tinymce.min.js"></script>
 		
 		<script>
-			tinymce.init({selector:'textarea'}); /* initialize teacher's content editor */
+			// tinymce.init({selector:'textarea'}); /* initialize teacher's content editor */
 			
 			$('#myTab a').click(function (e) {
   			e.preventDefault()
