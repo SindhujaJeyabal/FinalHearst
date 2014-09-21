@@ -48,7 +48,6 @@ body {
 }
 .cb-slideshow:after { 
     content: '';
-    background: transparent url(../images/pattern.png) repeat top left; 
 }
 .cb-slideshow li span { 
     width: 100%;
