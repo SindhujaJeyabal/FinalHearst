@@ -60,7 +60,7 @@ def queryAllArtifactsForCategoryinTribe(tribename,categoryname) :
 	if(tribename!=""):
 		return "No tribe selected"
 	artifacts_category = api.get_artifacts_tribe_category(tribename, categoryname)
-	return render_template('artifact-category.html',artifact_list=artifacts_category)
+	return render_template('artifact-category.html',artifact_list=artifacts_category,categoryname=categoryname,tribename=tribename)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
