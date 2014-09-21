@@ -99,6 +99,18 @@ def queryAllByUser(username):
 	conn.close()
 	return results
 
+def queryCoursework(teacher):
+	conn = sqlite3.connect("app/dbase/hearstdata.db")
+	c = conn.cursor()
+	tup=('student',teacher)
+	c.execute('select distinct classname from loginclass where role =? and mappedteacher = ?', tup)
+	results = []
+	reulst_list = c.fetchall()
+	if len(reulst_list) >=1 :
+		results = {'classdesc' : reulst_list[0][0]} 
+	conn.close()
+	return results
+
 def addToSatchel(tup):
 	try:
 		conn = sqlite3.connect("app/dbase/hearstdata.db")
