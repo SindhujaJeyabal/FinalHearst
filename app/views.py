@@ -72,14 +72,14 @@ def queryAllArtifactsForCategoryinTribe(tribename,categoryname) :
 	# show the user profile for that user
 	if(tribename==""):
 		return "No tribe selected"
-<<<<<<< HEAD
+
 	newCateg=categoryname.replace("ZZZZZ", " ")
 	artifacts_category = api.get_artifacts_tribe_category(tribename, newCateg)
 	return render_template('artifact-category.html',artifact_list=artifacts_category, categ_name = categoryname)
-=======
+
 	artifacts_category = api.get_artifacts_tribe_category(tribename, categoryname)
 	return render_template('artifact-category.html',artifact_list=artifacts_category,categoryname=categoryname,tribename=tribename)
->>>>>>> 124f853405f08627269042d902ce2af3b2090e45
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
