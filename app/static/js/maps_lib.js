@@ -21,7 +21,7 @@ var MapsLib = {
 
   //the encrypted Table ID of your Fusion Table (found under File => About)
   //NOTE: numeric IDs will be deprecated soon
-  fusionTableId:      "14kyH6CXKiK7nffxHlfANpg_0hZ2F8Bo5iLPPFzhy",
+  fusionTableId:      "1Fz3AERVhTUh0FcluxTIF2aoyJHgAeuXd2VOejrqr",
 
   //*New Fusion Tables Requirement* API key. found at https://code.google.com/apis/console/
   //*Important* this key is for demonstration purposes. please register your own.
@@ -43,6 +43,7 @@ var MapsLib = {
   currentPinpoint:    null,
 
   initialize: function() {
+
     $( "#result_count" ).html("");
 
     geocoder = new google.maps.Geocoder();
@@ -52,6 +53,40 @@ var MapsLib = {
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
     map = new google.maps.Map($("#map_canvas")[0],myOptions);
+
+    var polyOptions = {
+      strokeColor: '#000000',
+      strokeOpacity: 1.0,
+      strokeWeight: 3
+    }
+
+    var markers = [];
+
+    // if (markers.length == 0) {
+    //   $( "#view_mode_shape" ).hide();
+    // };
+
+    poly = new google.maps.Polyline(polyOptions);
+    poly.setMap(map);
+    srchbtn = document.querySelector("#search-shape");
+    google.maps.event.addListener(map, 'click', function(event) {
+      var path = poly.getPath();
+      path.push(event.latLng);
+      markers.push(new google.maps.Marker({
+        position: event.latLng,
+        title: '#' + path.getLength(),
+        icon: 'http://www.google.com/intl/en_us/mapfiles/ms/micons/blue-dot.png',
+        map: map
+      }));
+    });
+
+    srchbtn.addEventListener("click", function(e) {
+      var path = poly.getPath();
+      if(path.getLength() == 4) {
+        path.push(markers[0].getPosition());
+        polySearch();
+      }
+    });
 
     // maintains map centerpoint for responsive design
     google.maps.event.addDomListener(map, 'idle', function() {
@@ -70,9 +105,12 @@ var MapsLib = {
     if (loadRadius != "") $("#search_radius").val(loadRadius);
     else $("#search_radius").val(MapsLib.searchRadius);
     $(":checkbox").prop("checked", "checked");
-    // $("#result_box").hide();
-    // $("#view_mode").hide();
+    $("#resultlist").hide();
+    $(".alert").hide();
     $("#back-search").hide();
+    console.log("initialize");
+    $("#view_mode").hide();
+    $("#view_mode_shape").hide();
 
     
     //-----custom initializers-------
@@ -83,7 +121,50 @@ var MapsLib = {
     MapsLib.doSearch();
   },
 
+  polySearch: function() {
+    console.log("running polysearch");
+    var totalFound = 0;
+    var total = [];
+
+    for(var i=0; i<locData.length; i++) {
+      ll = locData[i][0];
+      t = ll.split(", ");
+      var point = new google.maps.LatLng(t[0], t[1]);
+      if(google.maps.geometry.poly.containsLocation(point, poly)) {
+        var m = new google.maps.Marker({
+          position: point,
+          title: 'Location '+i,
+          map: map
+        });
+        totalFound++;
+        total.push(locData[i]);
+      }
+    }
+    var results_shape = $("#resultlist_shape");
+    results_shape.hide().empty();
+    for (var row in total) {
+      template = "\
+        <div class='row-fluid item-list'>\
+          <div class='span12'>\
+            <strong>" + total[row][0] + "</strong>\
+            <br />\
+            " + total[row][1] + "\
+          </div>\
+        </div>";
+      results_shape.append(template);
+    }
+    if (totalFound == 1)
+      name = "Location";
+    else
+      name = "Locations";
+    $( ".alert" ).show();
+    $( "#view_mode_shape" ).show();
+    $( "#result_count" ).html(totalFound + " " + name + " found");
+  },
+
   doSearch: function(location) {
+    console.log("running doSearch");
+
     MapsLib.clearSearch();
     var address = $("#search_address").val();
     MapsLib.searchRadius = $("#search_radius").val();
@@ -199,16 +280,16 @@ var MapsLib = {
       } else {
         alert("Geocoder failed due to: " + status);
       }
-    }); 
+    });
   },
 
   drawSearchRadiusCircle: function(point) {
       var circleOptions = {
-        strokeColor: "#ED4E33",
+        strokeColor: "#4b58a6",
         strokeOpacity: 0.3,
         strokeWeight: 1,
-        fillColor: "#ED4E33",
-        fillOpacity: 0.1,
+        fillColor: "#4b58a6",
+        fillOpacity: 0.05,
         map: map,
         center: point,
         clickable: false,
@@ -255,6 +336,10 @@ var MapsLib = {
   },
 
   displaySearchCount: function(json) {
+    console.log("running displaySearchCount");
+
+    var address = $("#search_address").val();
+
     MapsLib.handleError(json);
     var numRows = 0;
     if (json["rows"] != null)
@@ -267,7 +352,7 @@ var MapsLib = {
         $( "#result_count" ).html(MapsLib.addCommas(numRows) + " " + name + " found");
       });
     $( "#result_box" ).fadeIn();
-    if (numRows != 0) {
+    if (numRows != 0 && address != "") {
       $( "#view_mode" ).fadeIn();
     }
   },
@@ -280,9 +365,10 @@ var MapsLib = {
   displayList: function(json) {
     MapsLib.handleError(json);
     var data = json["rows"];
+    locData = data;
     var template = "";
 
-    var results = $("#results_list");
+    var results = $("#resultlist");
     results.hide().empty(); //hide the existing list and empty it out first
 
     if (data == null) {
@@ -300,7 +386,8 @@ var MapsLib = {
             </div>\
           </div>";
         results.append(template);
-      }
+      };
+      // $( "#view_mode_shape" ).show();
     };
   },
 

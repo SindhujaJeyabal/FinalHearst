@@ -29,8 +29,7 @@
 		            	<span class="icon-bar"></span>
 		            	<span class="icon-bar"></span>
 	          		</button>
-	          		{% set g = 0			%}
-	          		<a class="navbar-brand" href="homepage.html">YAPI KAPI{{g}}</a>
+	          		<a class="navbar-brand" href="homepage.html">YAPI KAPI</a>
 	        	</div>
 	        	<div class="navbar-collapse collapse">
 	          		<ul class="nav navbar-nav navbar-right">
@@ -40,7 +39,7 @@
 				        	</a>
 				        </li>
 				        <li>
-				        	<a href="artifacts`.html">
+				        	<a href="artifact-category.html">
 				        		<span class="circle-number">2</span> Choose Artifacts
 				        	</a>
 				        </li>
@@ -84,10 +83,17 @@
 				    			</p>
 				    		</div>
 		    				<div class="visible-lg visible-md col-md-4">
-		    					<img src="/static/images/shape_art.png" class="img-responsive" />
+		    					<img src="images/shape_art.png" class="img-responsive" />
 		    				</div>
 
 				    	</div>
+
+				    	<br/>
+
+						<a class='btn btn-primary' id='search-shape' href='#'>
+						  <i class='glyphicon glyphicon-search'></i>
+						  Search with Shapes
+						</a>
 
 		    			<hr/>
 
@@ -111,8 +117,6 @@
 							</label>
 						</p>
 
-						<hr/>
-							
 						<a class='btn btn-primary' id='search' href='#'>
 						  <i class='glyphicon glyphicon-search'></i>
 						  Search Map
@@ -122,27 +126,42 @@
 						  <i class='glyphicon glyphicon-repeat'></i>
 						  Reset
 						</a>
+						<br/><br/>
 
-						<br /><br /><br />
+						<a class="btn btn-primary" id="view_mode">
+							Search Results
+						</a>
+
+						<hr/>
+
+						<br/>
+
+<!-- 						<label>Select a Template:</label>
+						<select id="style">
+							<option value=""></option>
+							<option value="3">BecomeADinosaur Template</option>
+							<option value="4">GrassIsGreener Template</option>
+						</select> -->
 
 					</div> <!-- end #search-functions -->
 
 					<div id="search-results">
-						<div class='alert alert-info' id='result_box' >
-							<strong id="result_count"></strong>
+						<!-- <div class='alert alert-info' id='result_box' >-->
+							<div class='alert alert-info' id="result_count"></div>
 							<strong id="results-list-link"></strong>
-						</div>
-						<a class="btn btn-primary" id="view_mode">
-							Show Results List
-						</a>					
+						<!--</div>-->				
 					</div>
+
+					<a class="btn btn-primary" id="view_mode_shape">
+						Show Shape Results
+					</a>		
 
 					<a class='btn btn-default' id='back-search' href='#'>
 					  <i class='glyphicon glyphicon-repeat'></i>
 					  Back to Search
 					</a><br/><br/>
-					<div id="results_list"></div>
-
+					<div id="resultlist_shape"></div>
+					<div id="resultlist"></div>
 	    		</div>
 	    	</div>
 	    </div>
@@ -153,11 +172,12 @@
 		<script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
 		<!-- Introduce Search Map JS -->
 	    <script type="text/javascript" src="/static/js/jquery.address.js"></script>
-	    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&libraries=places&v=3.14"></script>
+	    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&libraries=places&v=3.17"></script>
 	    <script type="text/javascript" src="/static/js/jquery.geocomplete.min.js"></script>
-	    <script type="text/javascript" src="/static/js/maps_lib.js"></script>
+	    <script type="text/javascript" src="/static/js/maps_lib_2.js"></script>
 	    <script type='text/javascript'>
 	      //<![CDATA[
+
 	        $(window).resize(function () {
 	          var h = $(window).height(),
 	            offsetTop = 80; // Calculate the top offset
@@ -184,6 +204,10 @@
 	          $('#search').click(function(){
 	            MapsLib.doSearch();
 	          });
+
+	          $("#search-shape").click(function() {
+	          	MapsLib.polySearch();
+	          })
 	          
 	          $('#find_me').click(function(){
 	            MapsLib.findMe(); 
@@ -197,9 +221,13 @@
 	          });
 	          
 	          $('#back-search').click(function(){
-	           	$.address.parameter('address','');
-	            MapsLib.initialize(); 
+	          	$("#resultlist_shape").fadeOut();
+	          	$("#resultlist").fadeOut();
+	          	$("#view_mode_shape").fadeOut();
+	          	$("#view_mode").fadeOut();
+	            $.address.parameter('address','');
 	            $("#search-functions").fadeIn();
+	            MapsLib.initialize(); 
 	            return false;
 	          });
 
@@ -211,15 +239,23 @@
 	              }
 	          });
 
+			  $( "#view_mode_shape" ).click(function() {
+				  $("#search-functions").fadeOut();
+				  $("#resultlist_shape").fadeIn();
+				  $("#back-search").fadeIn();
+				  $("#view_mode_shape").fadeOut();
+			  });
+
+
 			  $( "#view_mode" ).click(function() {
 				  $("#search-functions").fadeOut();
-				  $("#results_list").fadeIn();
+				  $("#resultlist").fadeIn();
 				  $("#back-search").fadeIn();
 				  $("#view_mode").fadeOut();
 			  });
 
     	    });
-	      //]]> 
+	      //]]>
 	    </script>
 	</body>
 </html>
