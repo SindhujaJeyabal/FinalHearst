@@ -29,7 +29,7 @@ def addStudentToClass(teacher, student):
 
 	conn = sqlite3.connect("app/dbase/hearstdata.db")
 	c = conn.cursor()
-	tup=[(student, 'Student', coursewrok, teacher)]
+	tup=(student, 'Student', coursewrok['classdesc'], teacher)
 	c.execute('insert into usermap values (?,?,?,?)', tup)
 	conn.commit()
 	conn.close()
